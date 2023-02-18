@@ -1,0 +1,45 @@
+@import "styles/variables.module";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  background-color: $black;
+  color: $white;
+  padding: 0 50px;
+}
+
+.logo {
+  font-family: $spaceMono;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.link {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 0 15px;
+  transition: color .2s;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 15px
+}
+
+.listItem {
+
+}

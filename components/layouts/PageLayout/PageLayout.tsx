@@ -1,9 +1,10 @@
-import { FC, ReactNode } from 'react';
+import {FC, ReactNode} from 'react';
 
-import { PageHead, PageHeadData } from './PageHead';
+import {PageHead, PageHeadData} from './PageHead';
+import {Header} from "@components/shared/Header/Header";
+import s from './PageLayout.module.scss'
 
-
-export type { PageHeadData };
+export type {PageHeadData};
 
 interface PageLayoutProps {
   pageHeadData: PageHeadData;
@@ -11,11 +12,12 @@ interface PageLayoutProps {
 }
 
 export const PageLayout: FC<PageLayoutProps> = (props) => {
-  const { pageHeadData, children } = props;
+  const {pageHeadData, children} = props;
 
   return (
-    <div>
+    <div className={s.body}>
       <PageHead {...pageHeadData} />
+      <Header/>
       <>{children}</>
     </div>
   );
