@@ -18,7 +18,9 @@ export const PageLayout: FC<PageLayoutProps> = (props) => {
     <div className={s.body}>
       <PageHead {...pageHeadData} />
       <Header/>
-      <>{children}</>
+      <div className={s.content}>
+        {children}
+      </div>
     </div>
   );
 };

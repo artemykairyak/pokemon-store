@@ -1,0 +1,69 @@
+@import "styles/variables.module";
+
+.card {
+  border-radius: 20px;
+  background-color: $blackSecondary;
+  overflow: hidden;
+  aspect-ratio: 1/1.3;
+  position: relative;
+  background-size: cover;
+  background-position: -1px -1px;
+  background-repeat: no-repeat;
+}
+
+.info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: $blackSecondary;
+  padding: 20px 30px 30px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 140%;
+  margin-bottom: 5px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+
+.authorPic {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  border-radius: 100%;
+}
+
+.authorName {
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.price {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.priceLabel {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: $labelGray;
+  font-family: $spaceMono;
+}
+
+.priceValue {
+  font-size: 16px;
+  font-family: $spaceMono;
+}
+

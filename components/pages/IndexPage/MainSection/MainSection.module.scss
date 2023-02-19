@@ -1,0 +1,56 @@
+.main {
+  padding: 80px 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  width: 40%;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 67px;
+  line-height: 110%;
+  margin-bottom: 20px;
+}
+
+.desc {
+  font-size: 22px;
+  line-height: 160%;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+
+.button {
+  height: 60px;
+  width: 224px;
+}
+
+.stats {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.statsItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statsValue {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.statsTitle {
+  font-size: 24px;
+}
+
+.card {
+  width: 470px;
+}
