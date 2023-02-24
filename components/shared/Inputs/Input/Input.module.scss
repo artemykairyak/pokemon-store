@@ -1,0 +1,34 @@
+@import "styles/variables.module";
+
+.input {
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 16px;
+  color: $black;
+  font-family: $workSans;
+  border: 1px solid $labelGray;
+  border-radius: 20px;
+  overflow: hidden;
+
+  &:focus {
+    border-color: $accent;
+  }
+
+  &::placeholder {
+    color: $labelGray;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $labelGray;
+  }
+
+  &::-ms-input-placeholder {
+    color: $labelGray;
+  }
+}
+
+.error {
+  border-color: $error;
+  color: $error;
+}

@@ -19,6 +19,8 @@ button {
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     font-family: 'Work Sans', sans-serif;
+    border: none;
+    outline: none;
 }
 
 button {

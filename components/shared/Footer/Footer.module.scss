@@ -1,0 +1,82 @@
+@import "styles/variables.module";
+
+.footerWrapper {
+  background-color: $blackSecondary;
+}
+
+.footer {
+  padding: 50px 0;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $labelGray;
+}
+
+.column {
+  color: #CCCCCC;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.columnTitle {
+  color: $white;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 160%;
+  font-family: $spaceMono;
+  margin-bottom: 32px;
+  display: flex;
+}
+
+.commonText {
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.communityText {
+  margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  color: #CCCCCC;
+  gap: 12px;
+}
+
+.socNet {
+  transition: color .2s;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link {
+  transition: color .2s;
+  
+  &:hover {
+    color: $accent;
+  }
+}
+
+.digestText {
+  width: 70%;
+  margin-bottom: 20px;
+}
+
+.copyright {
+  padding-top: 20px;
+  color: #CCCCCC;
+  font-size: 16px;
+}
+

@@ -1,0 +1,21 @@
+@import "styles/variables.module";
+
+.wrapper {
+  position: relative;
+}
+
+.input {
+  padding: 20px;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  &:hover {
+    background-color: darken($accent, 5%);
+    border-color: darken($accent, 5%);
+  }
+}
