@@ -2,7 +2,7 @@ import { Input, InputProps } from '@components/shared/Inputs/Input/Input';
 import { PrimaryButton } from '@components/shared/PrimaryButton/PrimaryButton';
 import clsx from 'clsx';
 import { FC, useRef } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import s from './ButtonInput.module.scss';
 
@@ -11,7 +11,7 @@ type OmittedInputProps = Omit<InputProps, 'register'>;
 
 interface ButtonInputProps extends OmittedInputProps {
   buttonText: string;
-  onSubmit: SubmitHandler<{ [name: string]: string }>;
+  onSubmit: SubmitHandler<FieldValues>;
   buttonIcon?: { src: string };
   name: string;
 }
@@ -31,7 +31,7 @@ export const ButtonInput: FC<ButtonInputProps> = ({
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm<FieldValues>();
 
   return (
     <form

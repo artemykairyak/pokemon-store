@@ -1,0 +1,89 @@
+@import "styles/variables.module";
+
+.login {
+  display: flex;
+  min-height: calc(100vh - 100px);
+  gap: 80px;
+}
+
+.img {
+  width: 50%;
+  background-image: url('/assets/images/login-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(80%);
+}
+
+.content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 51px;
+  line-height: 110%;
+  margin-bottom: 25px;
+}
+
+.text {
+  font-size: 22px;
+  line-height: 160%;
+  margin-bottom: 40px;
+  width: 50%;
+  text-transform: capitalize;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 47%;
+}
+
+.inputs {
+  margin-bottom: 10px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  margin-bottom: 30px;
+  height: 46px;
+}
+
+.button {
+  height: 46px;
+}
+
+.error {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  font-size: 14px;
+}
+
+.toggle {
+  width: 47%;
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toggleText {
+  margin-bottom: 10px;
+}
+
+.toggleButton {
+  color: $white;
+  text-decoration: underline;
+  font-size: 16px;
+  cursor: pointer;
+}

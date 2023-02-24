@@ -2,6 +2,7 @@ import UserIcon from '@assets/icons/User.svg';
 import { Logo } from '@components/shared/Logo/Logo';
 import { PrimaryButton } from '@components/shared/PrimaryButton/PrimaryButton';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import s from './Header.module.scss';
 
@@ -18,9 +19,15 @@ const headerLinks = [
 ];
 
 export const Header = () => {
+  const router = useRouter();
+
+  const onLoginBtnClick = async () => {
+    await router.push('/login')
+  }
+
   return (
     <div className={s.header}>
-      <Logo />
+      <Logo/>
       <nav className={s.nav}>
         <ul className={s.list}>
           {headerLinks.map((item, i) => {
@@ -33,7 +40,7 @@ export const Header = () => {
             );
           })}
         </ul>
-        <PrimaryButton icon={UserIcon}>Sign Up</PrimaryButton>
+        <PrimaryButton icon={UserIcon} onClick={onLoginBtnClick}>Sign Up</PrimaryButton>
       </nav>
     </div>
   );

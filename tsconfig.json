@@ -50,8 +50,8 @@
       "@styles/*": [
         "styles/*"
       ],
-      "@types/*": [
-        "types/*"
+      "@customTypes/*": [
+        "customTypes/*"
       ],
       "@queries/*": [
         "queries/*"

@@ -29,6 +29,6 @@
 }
 
 .error {
-  border-color: $error;
-  color: $error;
+  border-color: $error !important;
+  color: $error !important;
 }
