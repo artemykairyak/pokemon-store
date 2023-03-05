@@ -35,6 +35,12 @@
       "@enums/*": [
         "enums/*"
       ],
+      "@graphql/*": [
+        "graphql/*"
+      ],
+      "@graphqlTypes/*": [
+        "src/gql/*"
+      ],
       "@helpers/*": [
         "helpers/*"
       ],
@@ -52,9 +58,6 @@
       ],
       "@customTypes/*": [
         "customTypes/*"
-      ],
-      "@queries/*": [
-        "queries/*"
       ],
       "@utils/*": [
         "utils/*"

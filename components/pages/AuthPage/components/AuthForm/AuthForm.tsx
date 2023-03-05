@@ -7,7 +7,7 @@ import { FC } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { ObjectSchema } from 'yup';
 
-import s from '../../SignUpPage.module.scss';
+import s from '../../AuthPage.module.scss';
 
 
 interface SignUpFormProps {
@@ -15,13 +15,17 @@ interface SignUpFormProps {
   onSubmit: SubmitHandler<FieldValues>;
   validationSchema: ObjectSchema<any>;
   isSignUp: boolean;
+  authErrors?: string;
+  loading?: boolean;
 }
 
-export const SignUpForm: FC<SignUpFormProps> = ({
+export const AuthForm: FC<SignUpFormProps> = ({
   inputs,
   onSubmit,
   validationSchema,
   isSignUp,
+  authErrors,
+  loading,
 }) => {
   const {
     register,
@@ -61,9 +65,14 @@ export const SignUpForm: FC<SignUpFormProps> = ({
           );
         })}
       </div>
-      <PrimaryButton className={s.button}>
+      <PrimaryButton
+        className={s.button}
+        loading={!!loading}
+        disabled={loading}
+      >
         {isSignUp ? 'Create account' : 'Sign In'}
       </PrimaryButton>
+      <span className={s.authError}>{authErrors}</span>
     </form>
   );
 };
