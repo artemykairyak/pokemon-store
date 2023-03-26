@@ -1,6 +1,6 @@
 import UserIcon from '@assets/icons/User.svg';
 import { Logo } from '@components/shared/Logo/Logo';
-import { PrimaryButton } from '@components/shared/PrimaryButton/PrimaryButton';
+import { Button } from '@components/shared/PrimaryButton/Button';
 import { AuthContext } from '@context/AuthContext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -35,17 +35,17 @@ export const Header = () => {
         <ul className={s.list}>
           {headerLinks.map((item, i) => {
             return (
-              <li className={s.listItem}>
-                <Link className={s.link} key={i} href={item.link}>
+              <li className={s.listItem} key={i}>
+                <Link className={s.link} href={item.link}>
                   {item.title}
                 </Link>
               </li>
             );
           })}
         </ul>
-        <PrimaryButton icon={UserIcon} onClick={onLoginBtnClick}>
+        <Button icon={UserIcon} onClick={onLoginBtnClick}>
           {user ? 'Logged' : 'Sign Up'}
-        </PrimaryButton>
+        </Button>
       </nav>
     </div>
   );

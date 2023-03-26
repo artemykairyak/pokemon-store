@@ -1,11 +1,12 @@
 import RocketIcon from '@assets/icons/RocketLaunch.svg';
-import Avatar from '@assets/images/avatar.gif';
-import CardPic from '@assets/images/card.jpg';
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
+import { Heading } from '@components/shared/Heading/Heading';
 import { PokemonCard } from '@components/shared/PokemonCard/PokemonCard';
-import { PrimaryButton } from '@components/shared/PrimaryButton/PrimaryButton';
+import { Button } from '@components/shared/PrimaryButton/Button';
+import { GET_RANDOM_TOKENS } from '@graphql/queries/tokens';
+import { GetRandomTokensQueryVariables, Token } from '@graphqlTypes/graphql';
+import { useAppQuery } from '@hooks/useAppQuery';
 
-import { IPokemonCard } from '../../../../types';
 import s from './MainSection.module.scss';
 
 
@@ -24,31 +25,27 @@ const stats = [
   },
 ];
 
-const tempPokemonCard: IPokemonCard = {
-  id: 1,
-  name: 'Pickachu',
-  picture: CardPic.src,
-  author: {
-    name: 'Artemy',
-    picture: Avatar.src,
-  },
-  price: 50.99,
-};
-
 export const MainSection = () => {
+  const [randomTokens, loading, error] = useAppQuery<
+    GetRandomTokensQueryVariables,
+    Token[]
+  >(GET_RANDOM_TOKENS, { count: 1 });
+
   return (
     <ContentWrapper>
       <div className={s.main}>
         <div className={s.wrapper}>
           <div className={s.info}>
-            <h1 className={s.title}>Discover Digital Art & Collect NFTs</h1>
+            <Heading level={1} className={s.title}>
+              Discover Digital Art & Collect NFTs
+            </Heading>
             <p className={s.desc}>
               NFT marketplace UI created with Anima for Figma. Collect, buy and
               sell art from more than 20k NFT artists.
             </p>
-            <PrimaryButton icon={RocketIcon} className={s.button}>
+            <Button type="primary" icon={RocketIcon} className={s.button}>
               Get Started
-            </PrimaryButton>
+            </Button>
             <div className={s.stats}>
               {stats.map((item, i) => {
                 return (
@@ -61,7 +58,9 @@ export const MainSection = () => {
             </div>
           </div>
           <div className={s.pic}>
-            <PokemonCard card={tempPokemonCard} className={s.card} />
+            {!!randomTokens?.length && (
+              <PokemonCard card={randomTokens[0]} className={s.card} />
+            )}
           </div>
         </div>
       </div>

@@ -1,0 +1,25 @@
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 22px;
+  line-height: 160%;
+}
+
+.creators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 23%;
+}

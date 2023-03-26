@@ -1,5 +1,5 @@
 import { Input, InputProps } from '@components/shared/Inputs/Input/Input';
-import { PrimaryButton } from '@components/shared/PrimaryButton/PrimaryButton';
+import { Button } from '@components/shared/PrimaryButton/Button';
 import clsx from 'clsx';
 import { FC, useRef } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -48,9 +48,14 @@ export const ButtonInput: FC<ButtonInputProps> = ({
         register={register}
         validationOptions={validationOptions}
       />
-      <PrimaryButton icon={buttonIcon} className={s.button} ref={buttonRef}>
+      <Button
+        type="primary"
+        icon={buttonIcon}
+        className={s.button}
+        ref={buttonRef}
+      >
         {buttonText}
-      </PrimaryButton>
+      </Button>
     </form>
   );
 };

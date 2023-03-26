@@ -1,0 +1,27 @@
+.wrapper {
+  padding: 80px 0;
+}
+
+.headingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.tokenTypes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.7%;
+}
+
+.tokenType {
+  width: 17%;
+  margin-bottom: 3.65%;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}

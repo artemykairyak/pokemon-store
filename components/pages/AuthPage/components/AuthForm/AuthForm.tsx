@@ -1,5 +1,5 @@
 import { Input } from '@components/shared/Inputs/Input/Input';
-import { PrimaryButton } from '@components/shared/PrimaryButton/PrimaryButton';
+import { Button } from '@components/shared/PrimaryButton/Button';
 import { IInput } from '@customTypes/types';
 import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -65,13 +65,9 @@ export const AuthForm: FC<SignUpFormProps> = ({
           );
         })}
       </div>
-      <PrimaryButton
-        className={s.button}
-        loading={!!loading}
-        disabled={loading}
-      >
+      <Button className={s.button} loading={!!loading} disabled={loading}>
         {isSignUp ? 'Create account' : 'Sign In'}
-      </PrimaryButton>
+      </Button>
       <span className={s.authError}>{authErrors}</span>
     </form>
   );

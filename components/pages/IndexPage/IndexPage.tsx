@@ -1,14 +1,14 @@
-import { useQuery } from '@apollo/client';
+import { CreatorsSection } from '@components/pages/IndexPage/CreatorsSection/CreatorsSection';
 import { MainSection } from '@components/pages/IndexPage/MainSection/MainSection';
-import { GET_ALL_CARDS } from 'graphql/queries/cards';
+import { TokenTypesSection } from '@components/pages/IndexPage/TokenTypesSection/TokenTypesSection';
 
 
 export const IndexPage = () => {
-  const { data, loading } = useQuery(GET_ALL_CARDS);
-
   return (
     <>
       <MainSection />
+      <TokenTypesSection />
+      <CreatorsSection />
     </>
   );
 };

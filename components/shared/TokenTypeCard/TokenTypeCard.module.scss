@@ -1,0 +1,30 @@
+@import "styles/variables.module";
+
+.tokenType {
+  text-align: center;
+  border: 1px solid $white;
+  padding: 2.3% 0;
+  border-radius: 20px;
+  background-color: $blackSecondary;
+  transition: background-color .7s;
+
+  &:hover {
+    background-color: lighten($blackSecondary, 3%);
+
+    .picture {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.picture {
+  width: 50%;
+  transition: transform .3s;
+}
+
+.footer {
+  padding-top: 15px;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 140%;
+}

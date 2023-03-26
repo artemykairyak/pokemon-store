@@ -7,6 +7,7 @@ import s from './PrimaryButton.module.scss';
 
 interface PrimaryButtonProps {
   children: ReactNode | string;
+  type: 'primary' | 'secondary';
   loading?: boolean;
   disabled?: boolean;
   onClick?: VoidFunction;
@@ -14,11 +15,18 @@ interface PrimaryButtonProps {
   className?: string;
 }
 
-export const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
-  ({ children, icon, className, onClick, disabled, loading }, ref) => {
+export const Button = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
+  (props, ref) => {
+    const { children, icon, className, onClick, disabled, loading, type } =
+      props;
+
     return (
       <button
-        className={clsx(s.button, className)}
+        className={clsx(
+          s.button,
+          type === 'primary' ? s.primaryButton : s.secondaryButton,
+          className,
+        )}
         onClick={onClick}
         ref={ref}
         disabled={disabled}
