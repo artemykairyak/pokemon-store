@@ -22,39 +22,39 @@ export const GET_SHORT_AUTHORS = gql`
   }
 `;
 
-export const GET_ALL_AUTHORS = gql`
-  ${BASE_USER_FIELDS}
-  query getAllUsers($params: PaginateParams!) {
-    getAllUsers(params: $params) {
-      data {
-        ...BaseUserFields
-        bio
-        email
-        bio
-        cover
-        authoredTokens {
-          id
-          name
-          description
-          price
-          picture
-        }
-        ownedTokens {
-          id
-          name
-          description
-          price
-        }
-        links {
-          id
-          url
-          type {
-            id
-            name
-          }
-        }
-      }
-      total
-    }
-  }
-`;
+// export const GET_ALL_AUTHORS = gql`
+//   ${BASE_USER_FIELDS}
+//   query getAllUsers($params: PaginateParams!) {
+//     getAllUsers(params: $params) {
+//       data {
+//         ...BaseUserFields
+//         bio
+//         email
+//         bio
+//         cover
+//         authoredTokens {
+//           id
+//           name
+//           description
+//           price
+//           picture
+//         }
+//         ownedTokens {
+//           id
+//           name
+//           description
+//           price
+//         }
+//         links {
+//           id
+//           url
+//           type {
+//             id
+//             name
+//           }
+//         }
+//       }
+//       total
+//     }
+//   }
+// `;

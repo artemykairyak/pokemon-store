@@ -13,7 +13,7 @@ import s from './AuthPage.module.scss';
 
 
 export const AuthPage = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
   const { signUp, loading, errors, login } = useAuth();
   const router = useRouter();
 

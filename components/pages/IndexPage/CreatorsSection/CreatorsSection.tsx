@@ -1,7 +1,7 @@
 import EyeIcon from '@assets/icons/Eye.svg';
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
 import { UserCard } from '@components/pages/IndexPage/CreatorsSection/components/UserCard/UserCard';
-import { Heading } from '@components/shared/Heading/Heading';
+import { HeadingGroup } from '@components/shared/HeadingGroup/HeadingGroup';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { GET_SHORT_AUTHORS } from '@graphql/queries/users';
 import { GetAllUsersQueryVariables, User } from '@graphqlTypes/graphql';
@@ -18,22 +18,17 @@ export const CreatorsSection = () => {
 
   return (
     <ContentWrapper>
-      <div className={s.headingWrapper}>
-        <div>
-          <Heading level={2} className={s.title}>
-            Top Creators
-          </Heading>
-          <span className={s.subtitle}>
-            Checkout Top Rated Creators on the NFT Marketplace
-          </span>
-        </div>
+      <HeadingGroup
+        title="Top Creators"
+        subtitle="Checkout Top Rated Creators on the NFT Marketplace"
+      >
         <Button type="secondary" icon={EyeIcon}>
           See all
         </Button>
-      </div>
+      </HeadingGroup>
       <div className={s.creators}>
         {authors?.data &&
-          authors?.data.map((item, i) => {
+          authors.data.map((item, i) => {
             return (
               <UserCard
                 user={item}

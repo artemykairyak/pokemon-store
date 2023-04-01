@@ -12,8 +12,8 @@ type OmittedInputProps = Omit<InputProps, 'register'>;
 interface ButtonInputProps extends OmittedInputProps {
   buttonText: string;
   onSubmit: SubmitHandler<FieldValues>;
-  buttonIcon?: { src: string };
   name: string;
+  buttonIcon?: { src: string };
 }
 
 export const ButtonInput: FC<ButtonInputProps> = ({
@@ -52,6 +52,7 @@ export const ButtonInput: FC<ButtonInputProps> = ({
         type="primary"
         icon={buttonIcon}
         className={s.button}
+        iconClassName={s.icon}
         ref={buttonRef}
       >
         {buttonText}

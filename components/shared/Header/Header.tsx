@@ -43,7 +43,7 @@ export const Header = () => {
             );
           })}
         </ul>
-        <Button icon={UserIcon} onClick={onLoginBtnClick}>
+        <Button type="secondary" icon={UserIcon} onClick={onLoginBtnClick}>
           {user ? 'Logged' : 'Sign Up'}
         </Button>
       </nav>

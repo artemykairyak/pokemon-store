@@ -1,3 +1,71 @@
+@import "styles/variables.module";
+
 .user {
+  background-color: $blackSecondary;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.75% 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.index {
+  position: absolute;
+  top: 0;
+  left: -27%;
+  background-color: $black;
+  color: $labelGray;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.avatarWrapper {
+  width: 50%;
+  position: relative;
+  padding-top: 50%;
+  height: 0;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 140%;
+  margin-bottom: 5px;
+}
+
+.stats {
+  display: flex;
+  gap: 10px;
+}
+
+.statsKey {
+  font-size: 16px;
+  line-height: 140%;
+  color: $labelGray;
+}
+
+.statsValue {
+  font-family: $spaceMono;
+  font-size: 16px;
+  line-height: 140%;
 }

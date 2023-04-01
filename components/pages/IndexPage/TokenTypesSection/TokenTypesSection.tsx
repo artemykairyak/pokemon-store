@@ -1,6 +1,6 @@
 import EyeIcon from '@assets/icons/Eye.svg';
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
-import { Heading } from '@components/shared/Heading/Heading';
+import { HeadingGroup } from '@components/shared/HeadingGroup/HeadingGroup';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { TokenTypeCard } from '@components/shared/TokenTypeCard/TokenTypeCard';
 import { GET_TOKEN_TYPES } from '@graphql/queries/tokenTypes';
@@ -20,16 +20,15 @@ export const TokenTypesSection = () => {
   >(GET_TOKEN_TYPES);
 
   return (
-    <ContentWrapper className={s.wrapper}>
-      <div className={s.headingWrapper}>
-        <Heading level={2}>Browse Types</Heading>
+    <ContentWrapper>
+      <HeadingGroup title="Browse Types">
         <Button type="secondary" icon={EyeIcon}>
           See all
         </Button>
-      </div>
+      </HeadingGroup>
       <div className={s.tokenTypes}>
         {!!tokenTypes?.length &&
-          tokenTypes?.map((item, i) => {
+          tokenTypes.map((item, i) => {
             if (i < 10) {
               return <TokenTypeCard tokenType={item} className={s.tokenType} />;
             }

@@ -15,11 +15,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  mutation login($input: LoginUserInput!) {\n    login(loginUserInput: $input) {\n      access_token\n      user {\n        id\n        username\n      }\n    }\n  }\n": types.LoginDocument,
     "\n  mutation signUp($input: SignUpUserInput!) {\n    signUp(signUpUserInput: $input)\n  }\n": types.SignUpDocument,
+    "\n  query Me {\n    me {\n      username\n      id\n      email\n    }\n  }\n": types.MeDocument,
     "\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n": types.GetAllTokenTypesDocument,
     "\n  query getAllTokens($params: PaginateParams!) {\n    getAllTokens(params: $params) {\n      data {\n        id\n        name\n        author {\n          username\n          id\n          picture\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n": types.GetAllTokensDocument,
     "\n  query getRandomTokens($count: Int!) {\n    getRandomTokens(count: $count) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n": types.GetRandomTokensDocument,
     "\n  fragment BaseUserFields on User {\n    id\n    username\n    picture\n    boughtTokensCount\n    createdTokensCount\n  }\n": types.BaseUserFieldsFragmentDoc,
-    "\n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n        bio\n        email\n        bio\n        cover\n        authoredTokens {\n          id\n          name\n          description\n          price\n          picture\n        }\n        ownedTokens {\n          id\n          name\n          description\n          price\n        }\n        links {\n          id\n          url\n          type {\n            id\n            name\n          }\n        }\n      }\n      total\n    }\n  }\n": types.GetAllUsersDocument,
+    "\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n": types.GetAllUsersDocument,
 };
 
 /**
@@ -47,6 +48,10 @@ export function graphql(source: "\n  mutation signUp($input: SignUpUserInput!) {
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  query Me {\n    me {\n      username\n      id\n      email\n    }\n  }\n"): (typeof documents)["\n  query Me {\n    me {\n      username\n      id\n      email\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n"): (typeof documents)["\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -63,7 +68,7 @@ export function graphql(source: "\n  fragment BaseUserFields on User {\n    id\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n        bio\n        email\n        bio\n        cover\n        authoredTokens {\n          id\n          name\n          description\n          price\n          picture\n        }\n        ownedTokens {\n          id\n          name\n          description\n          price\n        }\n        links {\n          id\n          url\n          type {\n            id\n            name\n          }\n        }\n      }\n      total\n    }\n  }\n"): (typeof documents)["\n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n        bio\n        email\n        bio\n        cover\n        authoredTokens {\n          id\n          name\n          description\n          price\n          picture\n        }\n        ownedTokens {\n          id\n          name\n          description\n          price\n        }\n        links {\n          id\n          url\n          type {\n            id\n            name\n          }\n        }\n      }\n      total\n    }\n  }\n"];
+export function graphql(source: "\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n"): (typeof documents)["\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

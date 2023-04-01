@@ -1,8 +1,7 @@
-import { useQuery } from '@apollo/client';
 import { LS_ACCESS_TOKEN } from '@constants/constants';
-import { UserWithoutPassword } from '@customTypes/types';
 import { ME } from '@graphql/queries/auth';
-import { User } from '@graphqlTypes/graphql';
+import { MeQueryVariables, User } from '@graphqlTypes/graphql';
+import { useAppQuery } from '@hooks/useAppQuery';
 import {
   Dispatch,
   FC,
@@ -15,8 +14,8 @@ import {
 
 
 interface AuthContext {
-  user: UserWithoutPassword | null;
-  setUser: Dispatch<SetStateAction<UserWithoutPassword | null>>;
+  user: User | null;
+  setUser: Dispatch<SetStateAction<User | null>>;
 }
 
 export const AuthContext = createContext<AuthContext>({} as AuthContext);
@@ -24,15 +23,14 @@ export const AuthContext = createContext<AuthContext>({} as AuthContext);
 export const AuthContextProvider: FC<{
   children: ReactNode;
 }> = ({ children }) => {
-  const [user, setUser] = useState<UserWithoutPassword | null>(null);
-  const { data, error } = useQuery<{ me: User }>(ME);
+  const [user, setUser] = useState<User | null>(null);
+  const [me, error] = useAppQuery<MeQueryVariables, User>(ME);
 
   useEffect(() => {
-    if (data?.me) {
-      const { username, id, email } = data.me;
-      setUser({ username, id, email });
+    if (me) {
+      setUser(me);
     }
-  }, [data]);
+  }, [me]);
 
   useEffect(() => {
     if (error) {

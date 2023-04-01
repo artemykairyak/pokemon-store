@@ -1,0 +1,37 @@
+@import "styles/variables.module";
+
+.digest {
+  background-color: $blackSecondary;
+  border-radius: 20px;
+  display: flex;
+  padding: 5% 5%;
+  gap: 10%;
+  align-items: center;
+}
+
+.pic {
+  width: 45%;
+  border-radius: 20px;
+  aspect-ratio: 1/0.7;
+  object-fit: cover;
+}
+
+.info {
+  width: 50%;
+}
+
+.digestTitle {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.digestText {
+  width: 90%;
+  font-size: 22px;
+  line-height: 160%;
+  margin-bottom: 12%;
+}
+
+.input {
+  width: 100%;
+}

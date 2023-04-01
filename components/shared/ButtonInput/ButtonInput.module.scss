@@ -17,5 +17,13 @@
   &:hover {
     background-color: darken($accent, 5%);
     border-color: darken($accent, 5%);
+
+    .icon {
+      color: $white;
+    }
   }
+}
+
+.icon {
+  transition: none;
 }

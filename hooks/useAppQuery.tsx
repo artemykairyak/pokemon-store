@@ -9,7 +9,7 @@ export const useAppQuery = <TVariables extends OperationVariables, TResult>(
   queryString: DocumentNode,
   variables?: TVariables,
   options?: Omit<QueryHookOptions<DocumentNode, TVariables>, 'variables'>,
-): [TResult | undefined, boolean, string[] | undefined] => {
+): [TResult | undefined, string[] | undefined, boolean] => {
   let errors;
   const { data, loading, error } = useQuery<DocumentNode, TVariables>(
     queryString,
@@ -20,7 +20,7 @@ export const useAppQuery = <TVariables extends OperationVariables, TResult>(
   );
 
   if (typeof data === 'object') {
-    return [Object.values(data)[0], loading, undefined];
+    return [Object.values(data)[0], undefined, loading];
   }
 
   if (error) {
@@ -31,5 +31,5 @@ export const useAppQuery = <TVariables extends OperationVariables, TResult>(
     }
   }
 
-  return [data, loading, errors];
+  return [data, errors, loading];
 };

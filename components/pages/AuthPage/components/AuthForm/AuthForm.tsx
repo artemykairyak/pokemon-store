@@ -3,7 +3,7 @@ import { Button } from '@components/shared/PrimaryButton/Button';
 import { IInput } from '@customTypes/types';
 import { ErrorMessage } from '@hookform/error-message';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { ObjectSchema } from 'yup';
 
@@ -30,10 +30,15 @@ export const AuthForm: FC<SignUpFormProps> = ({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({
     resolver: yupResolver(validationSchema),
   });
+
+  useEffect(() => {
+    reset();
+  }, [isSignUp]);
 
   return (
     <form
@@ -65,7 +70,12 @@ export const AuthForm: FC<SignUpFormProps> = ({
           );
         })}
       </div>
-      <Button className={s.button} loading={!!loading} disabled={loading}>
+      <Button
+        type="primary"
+        className={s.button}
+        loading={!!loading}
+        disabled={loading}
+      >
         {isSignUp ? 'Create account' : 'Sign In'}
       </Button>
       <span className={s.authError}>{authErrors}</span>

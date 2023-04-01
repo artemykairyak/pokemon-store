@@ -1,8 +1,9 @@
 import { Token } from '@graphqlTypes/graphql';
+import { getRandomAvatar } from '@utils/utils';
 import clsx from 'clsx';
 import { FC } from 'react';
 
-import s from './PokemonCard.module.scss';
+import s from './TokenCard.module.scss';
 
 
 interface PokemonCardProps {
@@ -10,7 +11,7 @@ interface PokemonCardProps {
   className?: string;
 }
 
-export const PokemonCard: FC<PokemonCardProps> = ({
+export const TokenCard: FC<PokemonCardProps> = ({
   card: { picture, author, price, name },
   className,
 }) => {
@@ -25,7 +26,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({
           <div className={s.author}>
             <img
               className={s.authorPic}
-              src={author.picture || ''}
+              src={author.picture || getRandomAvatar()}
               alt={`${author.username} avatar`}
             />
             <span className={s.authorName}>{author.username}</span>

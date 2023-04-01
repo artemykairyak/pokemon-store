@@ -13,12 +13,21 @@ interface PrimaryButtonProps {
   onClick?: VoidFunction;
   icon?: { src: string };
   className?: string;
+  iconClassName?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
   (props, ref) => {
-    const { children, icon, className, onClick, disabled, loading, type } =
-      props;
+    const {
+      children,
+      icon,
+      className,
+      onClick,
+      disabled,
+      loading,
+      type,
+      iconClassName,
+    } = props;
 
     return (
       <button
@@ -31,7 +40,9 @@ export const Button = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
         ref={ref}
         disabled={disabled}
       >
-        {icon && <ReactSVG className={s.icon} src={icon.src} />}
+        {icon && (
+          <ReactSVG className={clsx(s.icon, iconClassName)} src={icon.src} />
+        )}
         {children}
       </button>
     );
