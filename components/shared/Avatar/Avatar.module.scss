@@ -1,0 +1,16 @@
+.avatarWrapper {
+  position: relative;
+  padding-top: 50%;
+  height: 0;
+}
+
+.avatar {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}

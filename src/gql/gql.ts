@@ -21,6 +21,8 @@ const documents = {
     "\n  query getRandomTokens($count: Int!) {\n    getRandomTokens(count: $count) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n": types.GetRandomTokensDocument,
     "\n  fragment BaseUserFields on User {\n    id\n    username\n    picture\n    boughtTokensCount\n    createdTokensCount\n  }\n": types.BaseUserFieldsFragmentDoc,
     "\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n": types.GetAllUsersDocument,
+    "\n  fragment TokenUser on Token {\n    id\n    name\n    description\n    price\n    picture\n    author {\n      id\n      username\n      picture\n    }\n  }\n": types.TokenUserFragmentDoc,
+    "\n  \n  query getUserByUsername($username: String!) {\n    getUserByUsername(username: $username) {\n      id\n      username\n      bio\n      email\n      bio\n      picture\n      cover\n      boughtTokensCount\n      createdTokensCount\n      links {\n        id\n        url\n        type {\n          id\n          name\n        }\n      }\n    }\n  }\n": types.GetUserByUsernameDocument,
 };
 
 /**
@@ -69,6 +71,14 @@ export function graphql(source: "\n  fragment BaseUserFields on User {\n    id\n
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n"): (typeof documents)["\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment TokenUser on Token {\n    id\n    name\n    description\n    price\n    picture\n    author {\n      id\n      username\n      picture\n    }\n  }\n"): (typeof documents)["\n  fragment TokenUser on Token {\n    id\n    name\n    description\n    price\n    picture\n    author {\n      id\n      username\n      picture\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  \n  query getUserByUsername($username: String!) {\n    getUserByUsername(username: $username) {\n      id\n      username\n      bio\n      email\n      bio\n      picture\n      cover\n      boughtTokensCount\n      createdTokensCount\n      links {\n        id\n        url\n        type {\n          id\n          name\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  \n  query getUserByUsername($username: String!) {\n    getUserByUsername(username: $username) {\n      id\n      username\n      bio\n      email\n      bio\n      picture\n      cover\n      boughtTokensCount\n      createdTokensCount\n      links {\n        id\n        url\n        type {\n          id\n          name\n        }\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

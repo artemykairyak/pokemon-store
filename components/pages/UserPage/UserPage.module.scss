@@ -1,0 +1,121 @@
+@import "styles/variables.module";
+
+.cover {
+  height: 370px;
+  position: relative;
+}
+
+.info {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.avatarWrapper {
+  width: 140px;
+  position: absolute;
+  bottom: -20%;
+  left: 16%;
+  height: 140px;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.infoRow {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.statsRow {
+  flex-direction: row;
+  gap: 60px;
+}
+
+.tokensInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.tokensCount {
+  font-family: $spaceMono;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 140%;
+}
+
+.tokensText {
+  font-size: 22px;
+  line-height: 160%;
+}
+
+.label {
+  font-family: $spaceMono;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 160%;
+  color: $labelGray;
+  margin-bottom: 10px;
+}
+
+.bio {
+  font-size: 22px;
+  line-height: 160%;
+}
+
+.links {
+  display: flex;
+  gap: 15px;
+}
+
+.link {
+  color: $labelGray;
+  width: 32px;
+  height: 32px;
+  transition: color .3s;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.tokensSection {
+  background-color: $blackSecondary;
+}
+
+.tokensWrapper {
+  padding: 0 6%;
+}
+
+.tabs {
+  display: flex;
+  padding: 30px 0;
+  border-bottom: 1px solid $black;
+}
+
+.tab {
+  width: 50%;
+  text-align: center;
+  color: $white;
+  font-size: 22px;
+  font-family: $spaceMono;
+  cursor: pointer;
+
+  &:first-child {
+    border-right: 1px solid $black;
+  }
+}
+
+.tokens {
+  background-color: $blackSecondary;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5%;
+}
+
+.token {
+  width: 30%;
+  margin-top: 5%;
+}

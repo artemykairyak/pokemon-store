@@ -8,16 +8,18 @@ import s from './TokenCard.module.scss';
 
 interface PokemonCardProps {
   card: Token;
+  darken?: boolean;
   className?: string;
 }
 
 export const TokenCard: FC<PokemonCardProps> = ({
   card: { picture, author, price, name },
+  darken = false,
   className,
 }) => {
   return (
     <div
-      className={clsx(s.card, className)}
+      className={clsx(s.card, { [s.darken]: darken }, className)}
       style={{ backgroundImage: `url(${picture})` }}
     >
       <div className={s.info}>

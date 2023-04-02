@@ -23,9 +23,11 @@ const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_SCHEMA_URL,
 });
 
-export const client = new ApolloClient({
+export const Client = new ApolloClient({
+  ssrMode: typeof window === 'undefined',
   link: from([authLink, httpLink]),
   cache: new InMemoryCache(),
+
   defaultOptions: {
     mutate: {
       errorPolicy: 'all',

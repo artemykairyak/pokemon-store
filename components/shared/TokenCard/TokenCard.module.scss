@@ -67,3 +67,8 @@
   font-family: $spaceMono;
 }
 
+.darken {
+  .info {
+    background-color: $black;
+  }
+}

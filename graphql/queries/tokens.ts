@@ -50,3 +50,36 @@ export const GET_RANDOM_TOKENS = gql`
     }
   }
 `;
+
+export const GET_USER_TOKENS = gql`
+  query getUserTokens(
+    $getAuthorTokensInput: GetAuthorTokensInput!
+    $params: PaginateParams!
+  ) {
+    getUserTokens(
+      getAuthorTokensInput: $getAuthorTokensInput
+      params: $params
+    ) {
+      data {
+        id
+        name
+        author {
+          username
+        }
+        description
+        picture
+        price
+        type {
+          name
+          picture
+          id
+        }
+        owner {
+          username
+          id
+        }
+      }
+      total
+    }
+  }
+`;
