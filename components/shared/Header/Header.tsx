@@ -1,4 +1,5 @@
 import UserIcon from '@assets/icons/User.svg';
+import { UserButton } from '@components/shared/Header/components/UserButton/UserButton';
 import { Logo } from '@components/shared/Logo/Logo';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { AuthContext } from '@context/AuthContext';
@@ -43,9 +44,13 @@ export const Header = () => {
             );
           })}
         </ul>
-        <Button type="secondary" icon={UserIcon} onClick={onLoginBtnClick}>
-          {user ? 'Logged' : 'Sign Up'}
-        </Button>
+        {user ? (
+          <UserButton user={user} />
+        ) : (
+          <Button type="secondary" icon={UserIcon} onClick={onLoginBtnClick}>
+            Login
+          </Button>
+        )}
       </nav>
     </div>
   );

@@ -1,0 +1,22 @@
+@import "styles/variables.module";
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab {
+  text-align: center;
+  color: $white;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 15px 0;
+  line-height: 140%;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-bottom: 2px solid transparent;
+}
+
+.selectedTab {
+  border-color: $labelGray;
+}

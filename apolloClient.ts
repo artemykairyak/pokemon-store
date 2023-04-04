@@ -5,11 +5,10 @@ import {
   from,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { LS_ACCESS_TOKEN } from '@constants/constants';
 
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem(LS_ACCESS_TOKEN);
+  const token = localStorage.getItem('pstoreAccessToken');
 
   return {
     headers: {

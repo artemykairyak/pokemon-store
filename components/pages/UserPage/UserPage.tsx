@@ -1,6 +1,8 @@
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
+import { UserCover } from '@components/pages/UserPage/components/UserCover/UserCover';
 import { Avatar } from '@components/shared/Avatar/Avatar';
 import { Heading } from '@components/shared/Heading/Heading';
+import { Tab, Tabs } from '@components/shared/Tabs/Tabs';
 import { TokenCard } from '@components/shared/TokenCard/TokenCard';
 import { GET_USER_TOKENS } from '@graphql/queries/tokens';
 import { GET_USER_BY_USERNAME } from '@graphql/queries/users';
@@ -11,60 +13,72 @@ import {
   User,
 } from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
+import { useUser } from '@hooks/useUser';
 import { getLinkLogoByType } from '@utils/utils';
 import clsx from 'clsx';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import s from './UserPage.module.scss';
-
-import DefaultCover from 'assets/images/userCover.jpg';
 
 
 export interface UserPageProps {
   username: string;
 }
 
+enum UserTab {
+  OWNED = 'owned',
+  CREATED = 'created',
+}
+
+const tabs: Tab[] = [
+  {
+    name: UserTab.OWNED,
+    text: UserTab.OWNED,
+  },
+  {
+    name: UserTab.CREATED,
+    text: UserTab.CREATED,
+  },
+];
+
 export const UserPage: FC<UserPageProps> = ({ username }) => {
-  const [selectedTab, setSelectedTab] = useState<'owned' | 'created'>('owned');
+  const [selectedTab, setSelectedTab] = useState<UserTab>(UserTab.OWNED);
   const [user, errors, loading] = useAppQuery<QueryGetUserByUsernameArgs, User>(
     GET_USER_BY_USERNAME,
     {
       username,
     },
   );
-  const [userTokens] = useAppQuery<QueryGetUserTokensArgs, PaginatedTokensData>(
-    GET_USER_TOKENS,
-    {
-      getAuthorTokensInput: {
-        username,
-        owned: selectedTab === 'owned',
-      },
-      params: {},
+  const [userTokens, _, userTokensLoading] = useAppQuery<
+    QueryGetUserTokensArgs,
+    PaginatedTokensData
+  >(GET_USER_TOKENS, {
+    getAuthorTokensInput: {
+      username,
+      owned: selectedTab === UserTab.OWNED,
     },
-  );
+    params: {},
+  });
+
+  const { isMe } = useUser(user);
+
+  console.log('ME', isMe);
+
+  const noTokens = !userTokens?.data.length && !userTokensLoading;
 
   if (!user) {
     return <div>Loading</div>;
   }
 
-  const toggleTokensMode = (e: MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLButtonElement;
-    setSelectedTab(target.name as 'owned' | 'created');
-  };
-
   return (
-    <div>
-      <div
-        className={s.cover}
-        style={{ backgroundImage: user?.cover || `url(${DefaultCover.src})` }}
-      >
-        <div className={s.avatarWrapper}>
-          <Avatar user={user} className={s.avatar} />
-        </div>
-      </div>
-      <ContentWrapper>
+    <>
+      <UserCover user={user} editable={isMe} />
+      <ContentWrapper wrapperClassName={s.infoSection}>
         <div className={s.info}>
+          <div className={s.avatarWrapper}>
+            <Avatar user={user} className={s.avatar} editable={isMe} />
+          </div>
           <Heading level={1}>{username}</Heading>
           <div className={clsx(s.infoRow, s.statsRow)}>
             <div className={s.tokensInfo}>
@@ -100,20 +114,20 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
             </div>
           )}
         </div>
+        <Tabs
+          tabs={tabs}
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
+        />
       </ContentWrapper>
       <ContentWrapper
         className={s.tokensSection}
         wrapperClassName={s.tokensWrapper}
       >
-        <div className={s.tabs}>
-          <button className={s.tab} name="owned" onClick={toggleTokensMode}>
-            Owned
-          </button>
-          <button className={s.tab} name="created" onClick={toggleTokensMode}>
-            Created
-          </button>
-        </div>
         <div className={s.tokens}>
+          {noTokens && (
+            <p className={s.emptyText}>There are no tokens yet...</p>
+          )}
           {userTokens?.data.map((token) => {
             return (
               <TokenCard
@@ -126,6 +140,6 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
           })}
         </div>
       </ContentWrapper>
-    </div>
+    </>
   );
 };

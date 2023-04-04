@@ -17,7 +17,6 @@ export const getGraphQLErrors = (error?: ApolloError) => {
 
 export const getRandomAvatar = () => {
   const randomNumber = Math.floor(Math.random() * 4);
-  console.log(randomNumber);
   return Object.values(avatars)[randomNumber].src;
 };
 

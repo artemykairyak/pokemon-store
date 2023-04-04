@@ -22,6 +22,28 @@ export const GET_SHORT_AUTHORS = gql`
   }
 `;
 
+export const USER_INFO = gql`
+  fragment UserInfo on User {
+    id
+    username
+    bio
+    email
+    bio
+    picture
+    cover
+    boughtTokensCount
+    createdTokensCount
+    links {
+      id
+      url
+      type {
+        id
+        name
+      }
+    }
+  }
+`;
+
 // export const GET_ALL_AUTHORS = gql`
 //   ${BASE_USER_FIELDS}
 //   query getAllUsers($params: PaginateParams!) {
@@ -60,25 +82,10 @@ export const GET_SHORT_AUTHORS = gql`
 // `;
 
 export const GET_USER_BY_USERNAME = gql`
+  ${USER_INFO}
   query getUserByUsername($username: String!) {
     getUserByUsername(username: $username) {
-      id
-      username
-      bio
-      email
-      bio
-      picture
-      cover
-      boughtTokensCount
-      createdTokensCount
-      links {
-        id
-        url
-        type {
-          id
-          name
-        }
-      }
+      ...UserInfo
     }
   }
 `;

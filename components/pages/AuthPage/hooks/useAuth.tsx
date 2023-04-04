@@ -29,6 +29,8 @@ export const useAuth = () => {
       const res = await loginMutation({
         variables: { input: { username, password } },
       });
+
+      console.log(res);
       if (res.data?.login) {
         localStorage.setItem(
           LS_ACCESS_TOKEN,
