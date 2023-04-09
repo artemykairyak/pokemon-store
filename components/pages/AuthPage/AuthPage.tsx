@@ -13,7 +13,7 @@ import s from './AuthPage.module.scss';
 
 
 export const AuthPage = () => {
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const { signUp, loading, errors, login } = useAuth();
   const router = useRouter();
 
@@ -22,13 +22,14 @@ export const AuthPage = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const { username, email, password } = data;
+
     if (isSignUp) {
       await signUp(username, email, password);
       return;
     }
 
     if (await login(username, password)) {
-      await router.push('/');
+      await router.push(`/user/${username}`);
     }
   };
 

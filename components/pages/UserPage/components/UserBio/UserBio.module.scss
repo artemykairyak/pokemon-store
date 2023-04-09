@@ -1,0 +1,28 @@
+@import "styles/variables.module";
+
+.bioWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-family: $spaceMono;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 160%;
+  color: $labelGray;
+  margin-bottom: 10px;
+}
+
+.bio {
+  background: transparent;
+  font-size: 22px;
+  line-height: 160%;
+  color: $white;
+  cursor: text;
+}
+
+.error {
+  color: $error;
+  font-size: 12px;
+}

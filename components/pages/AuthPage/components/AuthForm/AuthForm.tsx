@@ -45,7 +45,6 @@ export const AuthForm: FC<SignUpFormProps> = ({
       onSubmit={handleSubmit(onSubmit)}
       className={s.form}
       noValidate={true}
-      autoComplete="off"
     >
       <div className={s.inputs}>
         {inputs.map(({ placeholder, type, name }, i) => {

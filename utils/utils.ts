@@ -34,3 +34,18 @@ export const getLinkLogoByType = (type: string) => {
       return WebLogo.src;
   }
 };
+
+export const getLinkTypeIdByType = (type: string) => {
+  switch (type) {
+    case 'discord':
+      return DiscordLogo.src;
+    case 'youtube':
+      return YoutubeLogo.src;
+    case 'twitter':
+      return TwitterLogo.src;
+    case 'instagram':
+      return InstagramLogo.src;
+    default:
+      return WebLogo.src;
+  }
+};

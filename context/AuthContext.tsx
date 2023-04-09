@@ -24,7 +24,7 @@ export const AuthContextProvider: FC<{
   children: ReactNode;
 }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [me, error] = useAppQuery<MeQueryVariables, User>(ME);
+  const [me, error, loading] = useAppQuery<MeQueryVariables, User>(ME);
 
   useEffect(() => {
     if (me) {
@@ -33,11 +33,11 @@ export const AuthContextProvider: FC<{
   }, [me]);
 
   useEffect(() => {
-    if (error) {
+    if (!loading && error && !user) {
       localStorage.removeItem(LS_ACCESS_TOKEN);
       setUser(null);
     }
-  }, [error]);
+  }, [loading, error, user]);
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

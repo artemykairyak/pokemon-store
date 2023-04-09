@@ -9,7 +9,7 @@ export const useUser = (user?: User) => {
 
   useEffect(() => {
     setIsMe(user?.id === loggedUser?.id);
-  }, [user]);
+  }, [user, loggedUser]);
 
   return { isMe };
 };

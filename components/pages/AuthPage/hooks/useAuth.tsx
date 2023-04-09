@@ -30,16 +30,16 @@ export const useAuth = () => {
         variables: { input: { username, password } },
       });
 
-      console.log(res);
       if (res.data?.login) {
         localStorage.setItem(
           LS_ACCESS_TOKEN,
           res.data.login.access_token || '',
         );
-        setUser(res.data.login.user);
-      }
 
-      return !!res.data;
+        setUser(res.data.login.user);
+
+        return !!res.data;
+      }
     } catch (e) {
       console.error(e);
     }

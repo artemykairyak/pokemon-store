@@ -60,27 +60,6 @@
   margin-bottom: 10px;
 }
 
-.bio {
-  font-size: 22px;
-  line-height: 160%;
-}
-
-.links {
-  display: flex;
-  gap: 15px;
-}
-
-.link {
-  color: $labelGray;
-  width: 32px;
-  height: 32px;
-  transition: color .3s;
-
-  &:hover {
-    color: $white;
-  }
-}
-
 .tokensSection {
   background-color: $blackSecondary;
 }

@@ -1,5 +1,7 @@
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
+import { UserBio } from '@components/pages/UserPage/components/UserBio/UserBio';
 import { UserCover } from '@components/pages/UserPage/components/UserCover/UserCover';
+import { UserLinks } from '@components/pages/UserPage/components/UserLinks/UserLinks';
 import { Avatar } from '@components/shared/Avatar/Avatar';
 import { Heading } from '@components/shared/Heading/Heading';
 import { Tab, Tabs } from '@components/shared/Tabs/Tabs';
@@ -14,10 +16,8 @@ import {
 } from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
 import { useUser } from '@hooks/useUser';
-import { getLinkLogoByType } from '@utils/utils';
 import clsx from 'clsx';
 import { FC, useState } from 'react';
-import { ReactSVG } from 'react-svg';
 
 import s from './UserPage.module.scss';
 
@@ -63,8 +63,6 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
 
   const { isMe } = useUser(user);
 
-  console.log('ME', isMe);
-
   const noTokens = !userTokens?.data.length && !userTokensLoading;
 
   if (!user) {
@@ -91,28 +89,12 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
             </div>
           </div>
           <div className={s.infoRow}>
-            <span className={s.label}>Bio</span>
-            <p className={s.bio}>{user.bio || 'Here is empty...'}</p>
+            <UserBio user={user} editable={isMe} />
           </div>
-          {!!user.links?.length && (
-            <div className={s.infoRow}>
-              <span className={s.label}>Links</span>
-              <div className={s.links}>
-                {user.links.map((link) => {
-                  return (
-                    <a
-                      className={s.link}
-                      href={link.url}
-                      key={link.id}
-                      target="_blank"
-                    >
-                      <ReactSVG src={getLinkLogoByType(link.type.name)} />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          <div className={s.infoRow}>
+            <span className={s.label}>Links</span>
+            <UserLinks user={user} editable={isMe} />
+          </div>
         </div>
         <Tabs
           tabs={tabs}

@@ -14,7 +14,7 @@ export const UserButton: FC<UserButtonProps> = ({ user }) => {
   return (
     <Link href={`/user/${user.username}`}>
       <div className={s.userBtn}>
-        <Avatar user={user} className={s.avatar} />
+        <Avatar user={user} className={s.avatar} editable={false} />
         <span className={s.username}>{user.username}</span>
       </div>
     </Link>
