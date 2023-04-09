@@ -83,3 +83,28 @@ export const GET_USER_TOKENS = gql`
     }
   }
 `;
+
+export const GET_TOKEN = gql`
+  query getToken($id: Int!) {
+    getToken(id: $id) {
+      id
+      name
+      author {
+        username
+        id
+      }
+      description
+      picture
+      price
+      type {
+        name
+        picture
+        id
+      }
+      owner {
+        username
+        id
+      }
+    }
+  }
+`;

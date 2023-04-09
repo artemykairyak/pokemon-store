@@ -51,15 +51,6 @@
   line-height: 160%;
 }
 
-.label {
-  font-family: $spaceMono;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 160%;
-  color: $labelGray;
-  margin-bottom: 10px;
-}
-
 .tokensSection {
   background-color: $blackSecondary;
 }
@@ -67,7 +58,6 @@
 .tokensWrapper {
   padding-bottom: 0;
 }
-
 
 .tokens {
   background-color: $blackSecondary;

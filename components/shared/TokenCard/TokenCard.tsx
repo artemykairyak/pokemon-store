@@ -1,6 +1,7 @@
 import { Token } from '@graphqlTypes/graphql';
 import { getRandomAvatar } from '@utils/utils';
 import clsx from 'clsx';
+import Link from 'next/link';
 import { FC } from 'react';
 
 import s from './TokenCard.module.scss';
@@ -13,12 +14,13 @@ interface PokemonCardProps {
 }
 
 export const TokenCard: FC<PokemonCardProps> = ({
-  card: { picture, author, price, name },
+  card: { picture, author, price, name, id },
   darken = false,
   className,
 }) => {
   return (
-    <div
+    <Link
+      href={`/token/${id}`}
       className={clsx(s.card, { [s.darken]: darken }, className)}
       style={{ backgroundImage: `url(${picture})` }}
     >
@@ -41,6 +43,6 @@ export const TokenCard: FC<PokemonCardProps> = ({
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 };

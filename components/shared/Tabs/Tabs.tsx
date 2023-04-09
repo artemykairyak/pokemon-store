@@ -7,6 +7,7 @@ import s from './Tabs.module.scss';
 export interface Tab {
   name: string;
   text: string;
+  count?: number;
   onClick?: (name: string) => void;
   className?: string;
 }
@@ -20,7 +21,7 @@ interface TabsProps {
 export const Tabs: FC<TabsProps> = ({ tabs, selectedTab, setSelectedTab }) => {
   return (
     <div className={s.tabs}>
-      {tabs.map(({ name, text }) => {
+      {tabs.map(({ name, text, count }) => {
         return (
           <button
             className={clsx(s.tab, {
@@ -30,7 +31,8 @@ export const Tabs: FC<TabsProps> = ({ tabs, selectedTab, setSelectedTab }) => {
             name={name}
             onClick={() => setSelectedTab(name)}
           >
-            {text}
+            <span>{text}</span>
+            <span className={s.count}>{count}</span>
           </button>
         );
       })}

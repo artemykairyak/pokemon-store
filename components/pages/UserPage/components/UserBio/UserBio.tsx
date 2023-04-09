@@ -1,4 +1,5 @@
 import { UserComponentProps } from '@components/pages/UserPage/types';
+import { Label } from '@components/shared/Label/Label';
 import { useUpdateUser } from '@hooks/useUpdateUser';
 import { ChangeEvent, FC, useState } from 'react';
 
@@ -28,7 +29,7 @@ export const UserBio: FC<UserComponentProps> = ({ user, editable }) => {
 
   return (
     <div className={s.bioWrapper}>
-      <span className={s.label}>Bio</span>
+      <Label>Bio</Label>
       <input
         className={s.bio}
         value={bio}

@@ -4,6 +4,7 @@ import { UserCover } from '@components/pages/UserPage/components/UserCover/UserC
 import { UserLinks } from '@components/pages/UserPage/components/UserLinks/UserLinks';
 import { Avatar } from '@components/shared/Avatar/Avatar';
 import { Heading } from '@components/shared/Heading/Heading';
+import { Label } from '@components/shared/Label/Label';
 import { Tab, Tabs } from '@components/shared/Tabs/Tabs';
 import { TokenCard } from '@components/shared/TokenCard/TokenCard';
 import { GET_USER_TOKENS } from '@graphql/queries/tokens';
@@ -19,6 +20,8 @@ import { useUser } from '@hooks/useUser';
 import clsx from 'clsx';
 import { FC, useState } from 'react';
 
+
+
 import s from './UserPage.module.scss';
 
 
@@ -30,17 +33,6 @@ enum UserTab {
   OWNED = 'owned',
   CREATED = 'created',
 }
-
-const tabs: Tab[] = [
-  {
-    name: UserTab.OWNED,
-    text: UserTab.OWNED,
-  },
-  {
-    name: UserTab.CREATED,
-    text: UserTab.CREATED,
-  },
-];
 
 export const UserPage: FC<UserPageProps> = ({ username }) => {
   const [selectedTab, setSelectedTab] = useState<UserTab>(UserTab.OWNED);
@@ -62,8 +54,20 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
   });
 
   const { isMe } = useUser(user);
-
   const noTokens = !userTokens?.data.length && !userTokensLoading;
+
+  const tabs: Tab[] = [
+    {
+      name: UserTab.OWNED,
+      text: UserTab.OWNED,
+      count: user?.boughtTokensCount,
+    },
+    {
+      name: UserTab.CREATED,
+      text: UserTab.CREATED,
+      count: user?.createdTokensCount,
+    },
+  ];
 
   if (!user) {
     return <div>Loading</div>;
@@ -92,7 +96,7 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
             <UserBio user={user} editable={isMe} />
           </div>
           <div className={s.infoRow}>
-            <span className={s.label}>Links</span>
+            <Label>Links</Label>
             <UserLinks user={user} editable={isMe} />
           </div>
         </div>

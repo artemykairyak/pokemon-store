@@ -37,6 +37,10 @@
   }
 }
 
+.changeCover {
+  position: relative;
+}
+
 .changeCoverBtn {
   width: 100%;
   height: 100%;
@@ -48,6 +52,9 @@
 }
 
 .input {
-  width: 40%;
+  width: 450px;
 }
 
+.closeBtn {
+  right: -65px;
+}

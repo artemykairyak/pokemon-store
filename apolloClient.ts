@@ -7,7 +7,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 
-const authLink = setContext((_, { headers }) => {
+const authLink = setContext((request, { headers }) => {
   const token = localStorage.getItem('pstoreAccessToken');
 
   return {

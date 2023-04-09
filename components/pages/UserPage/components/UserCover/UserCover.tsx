@@ -36,7 +36,9 @@ export const UserCover: FC<UserCoverProps> = ({ user, editable }) => {
         [s.disabled]: !editable,
       })}
       style={{
-        backgroundImage: `url(${user?.cover})` || `url(${DefaultCover.src})`,
+        backgroundImage: user?.cover
+          ? `url(${user?.cover})`
+          : `url(${DefaultCover.src})`,
       }}
     >
       {!isUpdatingMode && editable && (
@@ -48,16 +50,19 @@ export const UserCover: FC<UserCoverProps> = ({ user, editable }) => {
         </button>
       )}
       {isUpdatingMode && (
-        <ButtonInput
-          className={s.input}
-          buttonText="Update"
-          onSubmit={onUpdateCover}
-          name="updateCover"
-          placeholder="Paste picture link"
-        />
-      )}
-      {isUpdatingMode && (
-        <CloseButton onClick={() => setIsUpdatingMode(false)} />
+        <div className={s.changeCover}>
+          <ButtonInput
+            className={s.input}
+            buttonText="Update"
+            onSubmit={onUpdateCover}
+            name="updateCover"
+            placeholder="Paste picture link"
+          />
+          <CloseButton
+            className={s.closeBtn}
+            onClick={() => setIsUpdatingMode(false)}
+          />
+        </div>
       )}
     </div>
   );

@@ -1,0 +1,11 @@
+@import "styles/variables.module";
+
+.label {
+  font-family: $spaceMono;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 160%;
+  color: $labelGray;
+  margin-bottom: 10px;
+  display: inline-block;
+}

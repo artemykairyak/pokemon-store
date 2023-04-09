@@ -1,0 +1,59 @@
+@import "styles/variables.module";
+
+@keyframes slideBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.cover {
+  height: 500px;
+  background-position: center;
+  background-size: 180px;
+  animation: slideBackground 20s linear infinite;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.info {
+  width: 70%;
+}
+
+.authorWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.authorAvatar {
+  width: 32px;
+  height: 32px;
+  padding-top: 0;
+  margin-right: 15px;
+}
+
+.authorName {
+  font-family: $workSans;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 140%;
+}
+
+.descText {
+  font-family: $workSans;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 160%;
+}
