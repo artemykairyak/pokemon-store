@@ -28,7 +28,7 @@ const stats = [
 export const MainSection = () => {
   const [randomTokens] = useAppQuery<GetRandomTokensQueryVariables, Token[]>(
     GET_RANDOM_TOKENS,
-    { count: 1 },
+    { input: { count: 1 } },
   );
 
   return (

@@ -14,7 +14,7 @@ interface PokemonCardProps {
 }
 
 export const TokenCard: FC<PokemonCardProps> = ({
-  card: { picture, author, price, name, id },
+  card: { picture, author, price, name, id, type },
   darken = false,
   className,
 }) => {
@@ -26,15 +26,22 @@ export const TokenCard: FC<PokemonCardProps> = ({
     >
       <div className={s.info}>
         <div className={s.mainInfo}>
-          <span className={s.title}>{name}</span>
-          <div className={s.author}>
-            <img
-              className={s.authorPic}
-              src={author.picture || getRandomAvatar()}
-              alt={`${author.username} avatar`}
-            />
-            <span className={s.authorName}>{author.username}</span>
+          <div className={s.infoTable}>
+            <span className={s.title}>{name}</span>
+            <div className={s.author}>
+              <img
+                className={s.authorPic}
+                src={author.picture || getRandomAvatar()}
+                alt={`${author.username} avatar`}
+              />
+              <span className={s.authorName}>{author.username}</span>
+            </div>
           </div>
+          <img
+            className={s.type}
+            src={type.picture}
+            alt={`${type.name} type`}
+          />
         </div>
         {price && (
           <div className={s.price}>

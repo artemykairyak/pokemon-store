@@ -30,8 +30,8 @@ export const GET_ALL_TOKENS = gql`
 `;
 
 export const GET_RANDOM_TOKENS = gql`
-  query getRandomTokens($count: Int!) {
-    getRandomTokens(count: $count) {
+  query getRandomTokens($input: GetRandomTokensInput!) {
+    getRandomTokens(getRandomTokensInput: $input) {
       id
       name
       author {

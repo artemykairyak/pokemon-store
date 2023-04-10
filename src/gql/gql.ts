@@ -20,10 +20,12 @@ const documents = {
     "\n  fragment BaseLinkFields on Link {\n    id\n    type {\n      id\n      name\n    }\n    url\n  }\n": types.BaseLinkFieldsFragmentDoc,
     "\n  \n  mutation createLink($input: CreateLinkInput!) {\n    createLink(createLinkInput: $input) {\n      ...BaseLinkFields\n    }\n  }\n": types.CreateLinkDocument,
     "\n  \n  mutation updateLink($input: UpdateLinkInput!) {\n    updateLink(updateLinkInput: $input) {\n      ...BaseLinkFields\n    }\n  }\n": types.UpdateLinkDocument,
+    "\n  mutation removeLink($type: String!) {\n    removeLink(type: $type)\n  }\n": types.RemoveLinkDocument,
     "\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n": types.GetAllTokenTypesDocument,
     "\n  query getAllTokens($params: PaginateParams!) {\n    getAllTokens(params: $params) {\n      data {\n        id\n        name\n        author {\n          username\n          id\n          picture\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n": types.GetAllTokensDocument,
-    "\n  query getRandomTokens($count: Int!) {\n    getRandomTokens(count: $count) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n": types.GetRandomTokensDocument,
+    "\n  query getRandomTokens($input: GetRandomTokensInput!) {\n    getRandomTokens(getRandomTokensInput: $input) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n": types.GetRandomTokensDocument,
     "\n  query getUserTokens(\n    $getAuthorTokensInput: GetAuthorTokensInput!\n    $params: PaginateParams!\n  ) {\n    getUserTokens(\n      getAuthorTokensInput: $getAuthorTokensInput\n      params: $params\n    ) {\n      data {\n        id\n        name\n        author {\n          username\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n": types.GetUserTokensDocument,
+    "\n  query getToken($id: Int!) {\n    getToken(id: $id) {\n      id\n      name\n      author {\n        username\n        id\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n      owner {\n        username\n        id\n      }\n    }\n  }\n": types.GetTokenDocument,
     "\n  fragment BaseUserFields on User {\n    id\n    username\n    picture\n    boughtTokensCount\n    createdTokensCount\n  }\n": types.BaseUserFieldsFragmentDoc,
     "\n  \n  query getAllUsers($params: PaginateParams!) {\n    getAllUsers(params: $params) {\n      data {\n        ...BaseUserFields\n      }\n      total\n    }\n  }\n": types.GetAllUsersDocument,
     "\n  fragment UserInfo on User {\n    id\n    username\n    bio\n    email\n    bio\n    picture\n    cover\n    boughtTokensCount\n    createdTokensCount\n    links {\n      id\n      url\n      type {\n        id\n        name\n      }\n    }\n  }\n": types.UserInfoFragmentDoc,
@@ -75,6 +77,10 @@ export function graphql(source: "\n  \n  mutation updateLink($input: UpdateLinkI
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  mutation removeLink($type: String!) {\n    removeLink(type: $type)\n  }\n"): (typeof documents)["\n  mutation removeLink($type: String!) {\n    removeLink(type: $type)\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n"): (typeof documents)["\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -83,11 +89,15 @@ export function graphql(source: "\n  query getAllTokens($params: PaginateParams!
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getRandomTokens($count: Int!) {\n    getRandomTokens(count: $count) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  query getRandomTokens($count: Int!) {\n    getRandomTokens(count: $count) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query getRandomTokens($input: GetRandomTokensInput!) {\n    getRandomTokens(getRandomTokensInput: $input) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  query getRandomTokens($input: GetRandomTokensInput!) {\n    getRandomTokens(getRandomTokensInput: $input) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query getUserTokens(\n    $getAuthorTokensInput: GetAuthorTokensInput!\n    $params: PaginateParams!\n  ) {\n    getUserTokens(\n      getAuthorTokensInput: $getAuthorTokensInput\n      params: $params\n    ) {\n      data {\n        id\n        name\n        author {\n          username\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n"): (typeof documents)["\n  query getUserTokens(\n    $getAuthorTokensInput: GetAuthorTokensInput!\n    $params: PaginateParams!\n  ) {\n    getUserTokens(\n      getAuthorTokensInput: $getAuthorTokensInput\n      params: $params\n    ) {\n      data {\n        id\n        name\n        author {\n          username\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getToken($id: Int!) {\n    getToken(id: $id) {\n      id\n      name\n      author {\n        username\n        id\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n      owner {\n        username\n        id\n      }\n    }\n  }\n"): (typeof documents)["\n  query getToken($id: Int!) {\n    getToken(id: $id) {\n      id\n      name\n      author {\n        username\n        id\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n      owner {\n        username\n        id\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

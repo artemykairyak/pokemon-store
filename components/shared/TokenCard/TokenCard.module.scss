@@ -22,7 +22,12 @@
 
 .mainInfo {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoTable {
+  width: 80%;
 }
 
 .title {
@@ -35,6 +40,7 @@
 .author {
   display: flex;
   align-items: center;
+  margin-top: 5px;
 }
 
 .authorPic {
@@ -65,6 +71,11 @@
 .priceValue {
   font-size: 16px;
   font-family: $spaceMono;
+}
+
+.type {
+  width: 40px;
+  height: 40px;
 }
 
 .darken {

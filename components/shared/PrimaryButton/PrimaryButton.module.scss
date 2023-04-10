@@ -35,8 +35,16 @@
   background-color: transparent;
   border: 2px solid $accent;
 
+  .icon {
+    color: $accent;
+  }
+
   &:hover {
     border: 2px solid $white;
+
+    .icon {
+      color: $white;
+    }
   }
 }
 
