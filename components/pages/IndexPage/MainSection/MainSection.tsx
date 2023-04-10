@@ -3,29 +3,21 @@ import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrappe
 import { Heading } from '@components/shared/Heading/Heading';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { TokenCard } from '@components/shared/TokenCard/TokenCard';
+import { GET_STATS } from '@graphql/queries/stats';
 import { GET_RANDOM_TOKENS } from '@graphql/queries/tokens';
-import { GetRandomTokensQueryVariables, Token } from '@graphqlTypes/graphql';
+import {
+  GetRandomTokensQueryVariables,
+  Stats,
+  Token,
+} from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
+import { getStatsArray } from '@utils/utils';
 
 import s from './MainSection.module.scss';
 
 
-const stats = [
-  {
-    value: '240k+',
-    title: 'Total Sale',
-  },
-  {
-    value: '100k+',
-    title: 'Auctions',
-  },
-  {
-    value: '240k+',
-    title: 'Artists',
-  },
-];
-
 export const MainSection = () => {
+  const [stats] = useAppQuery<{}, Stats[]>(GET_STATS);
   const [randomTokens] = useAppQuery<GetRandomTokensQueryVariables, Token[]>(
     GET_RANDOM_TOKENS,
     { input: { count: 1 } },
@@ -46,14 +38,15 @@ export const MainSection = () => {
             Get Started
           </Button>
           <div className={s.stats}>
-            {stats.map((item, i) => {
-              return (
-                <div key={i} className={s.statsItem}>
-                  <span className={s.statsValue}>{item.value}</span>
-                  <span className={s.statsTitle}>{item.title}</span>
-                </div>
-              );
-            })}
+            {stats &&
+              getStatsArray(stats)?.map((item, i) => {
+                return (
+                  <div key={i} className={s.statsItem}>
+                    <span className={s.statsValue}>{item.value}</span>
+                    <span className={s.statsTitle}>{item.title}</span>
+                  </div>
+                );
+              })}
           </div>
         </div>
         <div className={s.pic}>

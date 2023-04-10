@@ -1,0 +1,32 @@
+@import "styles/variables.module";
+
+.headerContent {
+  padding-bottom: 0;
+}
+
+.content {
+  background: $blackSecondary;
+}
+
+.tokens {
+  display: flex;
+  gap: 2.5%;
+  flex-wrap: wrap;
+}
+
+.token {
+  width: 31.65%;
+  margin-bottom: 2.5%;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.7%;
+}
+
+
+.type {
+  width: 17%;
+  margin-bottom: 3.65%;
+}

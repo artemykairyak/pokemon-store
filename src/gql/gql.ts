@@ -21,7 +21,8 @@ const documents = {
     "\n  \n  mutation createLink($input: CreateLinkInput!) {\n    createLink(createLinkInput: $input) {\n      ...BaseLinkFields\n    }\n  }\n": types.CreateLinkDocument,
     "\n  \n  mutation updateLink($input: UpdateLinkInput!) {\n    updateLink(updateLinkInput: $input) {\n      ...BaseLinkFields\n    }\n  }\n": types.UpdateLinkDocument,
     "\n  mutation removeLink($type: String!) {\n    removeLink(type: $type)\n  }\n": types.RemoveLinkDocument,
-    "\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n": types.GetAllTokenTypesDocument,
+    "\n  query getStats {\n    getStats {\n      usersCount\n      tokensCount\n    }\n  }\n": types.GetStatsDocument,
+    "\n  query getTokenTypes($params: PaginateParams!) {\n    getTokenTypes(params: $params) {\n      data {\n        id\n        name\n        picture\n      }\n      total\n    }\n  }\n": types.GetTokenTypesDocument,
     "\n  query getAllTokens($params: PaginateParams!) {\n    getAllTokens(params: $params) {\n      data {\n        id\n        name\n        author {\n          username\n          id\n          picture\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n": types.GetAllTokensDocument,
     "\n  query getRandomTokens($input: GetRandomTokensInput!) {\n    getRandomTokens(getRandomTokensInput: $input) {\n      id\n      name\n      author {\n        username\n        id\n        picture\n      }\n      description\n      picture\n      price\n      type {\n        name\n        picture\n        id\n      }\n    }\n  }\n": types.GetRandomTokensDocument,
     "\n  query getUserTokens(\n    $getAuthorTokensInput: GetAuthorTokensInput!\n    $params: PaginateParams!\n  ) {\n    getUserTokens(\n      getAuthorTokensInput: $getAuthorTokensInput\n      params: $params\n    ) {\n      data {\n        id\n        name\n        author {\n          username\n        }\n        description\n        picture\n        price\n        type {\n          name\n          picture\n          id\n        }\n        owner {\n          username\n          id\n        }\n      }\n      total\n    }\n  }\n": types.GetUserTokensDocument,
@@ -81,7 +82,11 @@ export function graphql(source: "\n  mutation removeLink($type: String!) {\n    
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n"): (typeof documents)["\n  query getAllTokenTypes {\n    getAllTokenTypes {\n      id\n      name\n      picture\n    }\n  }\n"];
+export function graphql(source: "\n  query getStats {\n    getStats {\n      usersCount\n      tokensCount\n    }\n  }\n"): (typeof documents)["\n  query getStats {\n    getStats {\n      usersCount\n      tokensCount\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getTokenTypes($params: PaginateParams!) {\n    getTokenTypes(params: $params) {\n      data {\n        id\n        name\n        picture\n      }\n      total\n    }\n  }\n"): (typeof documents)["\n  query getTokenTypes($params: PaginateParams!) {\n    getTokenTypes(params: $params) {\n      data {\n        id\n        name\n        picture\n      }\n      total\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

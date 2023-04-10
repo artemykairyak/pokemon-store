@@ -5,13 +5,19 @@ import { Recommendations } from '@components/shared/Recommendations/Recommendati
 import { GET_RANDOM_TOKENS } from '@graphql/queries/tokens';
 import { GetRandomTokensQueryVariables, Token } from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
+import { useRouter } from 'next/router';
 
 
 export const MoreTokensSection = () => {
+  const router = useRouter();
   const [randomTokens] = useAppQuery<GetRandomTokensQueryVariables, Token[]>(
     GET_RANDOM_TOKENS,
     { input: { count: 3 } },
   );
+
+  const goToShop = async () => {
+    await router.push('/shop');
+  };
 
   return (
     <ContentWrapper>
@@ -20,7 +26,7 @@ export const MoreTokensSection = () => {
         title="Discover More NFTs"
         subtitle="Explore new trending NFTs"
         button={
-          <Button type="secondary" icon={EyeIcon}>
+          <Button type="secondary" icon={EyeIcon} onClick={goToShop}>
             See all
           </Button>
         }

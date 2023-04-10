@@ -24,6 +24,7 @@ export const Tabs: FC<TabsProps> = ({ tabs, selectedTab, setSelectedTab }) => {
       {tabs.map(({ name, text, count }) => {
         return (
           <button
+            key={name}
             className={clsx(s.tab, {
               [s.selectedTab]: selectedTab === name,
             })}

@@ -4,10 +4,7 @@ import { HeadingGroup } from '@components/shared/HeadingGroup/HeadingGroup';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { TokenTypeCard } from '@components/shared/TokenTypeCard/TokenTypeCard';
 import { GET_TOKEN_TYPES } from '@graphql/queries/tokenTypes';
-import {
-  GetAllTokenTypesQueryVariables,
-  TokenType,
-} from '@graphqlTypes/graphql';
+import { GetTokenTypesQueryVariables, TokenType } from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
 
 import s from './TokenTypesSection.module.scss';
@@ -15,7 +12,7 @@ import s from './TokenTypesSection.module.scss';
 
 export const TokenTypesSection = () => {
   const [tokenTypes, loading, error] = useAppQuery<
-    GetAllTokenTypesQueryVariables,
+    GetTokenTypesQueryVariables,
     TokenType[]
   >(GET_TOKEN_TYPES);
 

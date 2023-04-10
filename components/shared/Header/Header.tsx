@@ -12,12 +12,8 @@ import s from './Header.module.scss';
 
 const headerLinks = [
   {
-    title: 'Marketplace',
-    link: '/marketplace',
-  },
-  {
-    title: 'Statistics',
-    link: '/stats',
+    title: 'Shop',
+    link: '/shop',
   },
 ];
 

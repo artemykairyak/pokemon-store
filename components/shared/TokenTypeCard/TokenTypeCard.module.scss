@@ -8,6 +8,14 @@
   background-color: $blackSecondary;
   transition: background-color .7s;
 
+  &.darken {
+    background-color: $black;
+
+    &:hover {
+      background-color: lighten($black, 3%);
+    }
+  }
+
   &:hover {
     background-color: lighten($blackSecondary, 3%);
 

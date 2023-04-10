@@ -9,15 +9,20 @@ import s from './TokenTypeCard.module.scss';
 interface TokenTypeCardProps {
   tokenType: TokenType;
   className?: string;
+  darken?: boolean;
 }
 
 export const TokenTypeCard: FC<TokenTypeCardProps> = ({
   tokenType,
   className,
+  darken,
 }) => {
   return (
     //todo: link
-    <Link href="/store" className={clsx(s.tokenType, className)}>
+    <Link
+      href="/store"
+      className={clsx(s.tokenType, { [s.darken]: darken }, className)}
+    >
       <div className={s.info}>
         <img
           className={s.picture}
