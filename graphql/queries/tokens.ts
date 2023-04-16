@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_ALL_TOKENS = gql`
-  query getAllTokens($params: PaginateParams!) {
-    getAllTokens(params: $params) {
+  query getAllTokens($params: PaginateParams, $filters: TokensFilterParams) {
+    getAllTokens(params: $params, filters: $filters) {
       data {
         id
         name

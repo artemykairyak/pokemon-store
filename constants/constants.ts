@@ -4,3 +4,5 @@ export const statsKeys = {
   usersCount: 'Total Users',
   tokensCount: 'Total Tokens',
 };
+
+export const DEFAULT_LIMIT = 9;
