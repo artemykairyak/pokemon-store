@@ -16,9 +16,6 @@
   animation: slideBackground 20s linear infinite;
 }
 
-.buyBtn {
-}
-
 .titleWrapper {
   display: flex;
   justify-content: space-between;
@@ -48,32 +45,6 @@
   width: 70%;
 }
 
-.authorWrapper {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-}
-
-.author {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.authorAvatar {
-  width: 32px;
-  height: 32px;
-  padding-top: 0;
-  margin-right: 15px;
-}
-
-.authorName {
-  font-family: $workSans;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 140%;
-}
-
 .descText {
   font-family: $workSans;
   font-weight: 400;
@@ -83,4 +54,8 @@
 
 .recs {
   margin-top: 80px;
+}
+
+.owner {
+
 }

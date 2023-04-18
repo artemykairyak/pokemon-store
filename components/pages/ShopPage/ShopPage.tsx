@@ -30,7 +30,6 @@ export const ShopPage = () => {
   const [selectedPage, setSelectedPage] = useState(1);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [stats] = useAppQuery<{}, Stats[]>(GET_STATS);
   const {
     data: tokens,

@@ -44,43 +44,6 @@ export const USER_INFO = gql`
   }
 `;
 
-// export const GET_ALL_AUTHORS = gql`
-//   ${BASE_USER_FIELDS}
-//   query getAllUsers($params: PaginateParams!) {
-//     getAllUsers(params: $params) {
-//       data {
-//         ...BaseUserFields
-//         bio
-//         email
-//         bio
-//         cover
-//         authoredTokens {
-//           id
-//           name
-//           description
-//           price
-//           picture
-//         }
-//         ownedTokens {
-//           id
-//           name
-//           description
-//           price
-//         }
-//         links {
-//           id
-//           url
-//           type {
-//             id
-//             name
-//           }
-//         }
-//       }
-//       total
-//     }
-//   }
-// `;
-
 export const GET_USER_BY_USERNAME = gql`
   ${USER_INFO}
   query getUserByUsername($username: String!) {

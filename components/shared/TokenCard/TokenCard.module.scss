@@ -56,12 +56,11 @@
 }
 
 .price {
-  margin-top: 25px;
   display: flex;
   flex-direction: column;
 }
 
-.priceLabel {
+.priceLabel, .ownerLabel {
   margin-bottom: 5px;
   font-size: 12px;
   color: $labelGray;
@@ -82,4 +81,34 @@
   .info {
     background-color: $black;
   }
+}
+
+.footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.owner {
+  display: flex;
+  align-items: center;
+}
+
+.ownerWrapper {
+  margin-top: 0;
+}
+
+.ownerLabel {
+  font-weight: 400;
+}
+
+.ownerAvatar {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.ownerUsername {
+  font-size: 16px;
+  line-height: 140%;
 }

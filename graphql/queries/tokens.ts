@@ -108,3 +108,24 @@ export const GET_TOKEN = gql`
     }
   }
 `;
+
+export const BUY_TOKEN = gql`
+  mutation buyToken($input: BuyTokenInput!) {
+    buyToken(buyTokenInput: $input) {
+      id
+      name
+      description
+      picture
+      price
+      type {
+        name
+        picture
+        id
+      }
+      owner {
+        username
+        id
+      }
+    }
+  }
+`;

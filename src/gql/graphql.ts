@@ -54,6 +54,7 @@ export type GetAuthorTokensInput = {
 
 export type GetRandomTokensInput = {
   count: Scalars['Int'];
+  excludedId?: InputMaybe<Scalars['Float']>;
   username?: InputMaybe<Scalars['String']>;
 };
 
@@ -84,6 +85,7 @@ export type LoginUserInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  buyToken: Token;
   createLink: Link;
   createLinkType: LinkType;
   createToken: Token;
@@ -100,6 +102,11 @@ export type Mutation = {
   updateLink: Link;
   updateToken: Token;
   updateUser: User;
+};
+
+
+export type MutationBuyTokenArgs = {
+  buyTokenInput: BuyTokenInput;
 };
 
 
@@ -207,7 +214,6 @@ export type PaginatedUsersData = {
 
 export type Query = {
   __typename?: 'Query';
-  buyToken: Token;
   getAllLinkTypes: Array<LinkType>;
   getAllTokens: PaginatedTokensData;
   getAllUsers: PaginatedUsersData;
@@ -221,11 +227,6 @@ export type Query = {
   getUserByUsername: User;
   getUserTokens: PaginatedTokensData;
   me: User;
-};
-
-
-export type QueryBuyTokenArgs = {
-  buyTokenInput: BuyTokenInput;
 };
 
 
@@ -301,7 +302,7 @@ export type Token = {
   name: Scalars['String'];
   owner: User;
   picture: Scalars['String'];
-  price?: Maybe<Scalars['Float']>;
+  price: Scalars['Float'];
   type: TokenType;
 };
 
@@ -434,14 +435,14 @@ export type GetAllTokensQueryVariables = Exact<{
 }>;
 
 
-export type GetAllTokensQuery = { __typename?: 'Query', getAllTokens: { __typename?: 'PaginatedTokensData', total: number, data: Array<{ __typename?: 'Token', id: number, name: string, description: string, picture: string, price?: number | null, author: { __typename?: 'User', username?: string | null, id?: number | null, picture?: string | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } }> } };
+export type GetAllTokensQuery = { __typename?: 'Query', getAllTokens: { __typename?: 'PaginatedTokensData', total: number, data: Array<{ __typename?: 'Token', id: number, name: string, description: string, picture: string, price: number, author: { __typename?: 'User', username?: string | null, id?: number | null, picture?: string | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } }> } };
 
 export type GetRandomTokensQueryVariables = Exact<{
   input: GetRandomTokensInput;
 }>;
 
 
-export type GetRandomTokensQuery = { __typename?: 'Query', getRandomTokens: Array<{ __typename?: 'Token', id: number, name: string, description: string, picture: string, price?: number | null, author: { __typename?: 'User', username?: string | null, id?: number | null, picture?: string | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string } }> };
+export type GetRandomTokensQuery = { __typename?: 'Query', getRandomTokens: Array<{ __typename?: 'Token', id: number, name: string, description: string, picture: string, price: number, author: { __typename?: 'User', username?: string | null, id?: number | null, picture?: string | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string } }> };
 
 export type GetUserTokensQueryVariables = Exact<{
   getAuthorTokensInput: GetAuthorTokensInput;
@@ -449,14 +450,21 @@ export type GetUserTokensQueryVariables = Exact<{
 }>;
 
 
-export type GetUserTokensQuery = { __typename?: 'Query', getUserTokens: { __typename?: 'PaginatedTokensData', total: number, data: Array<{ __typename?: 'Token', id: number, name: string, description: string, picture: string, price?: number | null, author: { __typename?: 'User', username?: string | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } }> } };
+export type GetUserTokensQuery = { __typename?: 'Query', getUserTokens: { __typename?: 'PaginatedTokensData', total: number, data: Array<{ __typename?: 'Token', id: number, name: string, description: string, picture: string, price: number, author: { __typename?: 'User', username?: string | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } }> } };
 
 export type GetTokenQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
 
-export type GetTokenQuery = { __typename?: 'Query', getToken: { __typename?: 'Token', id: number, name: string, description: string, picture: string, price?: number | null, author: { __typename?: 'User', username?: string | null, id?: number | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } } };
+export type GetTokenQuery = { __typename?: 'Query', getToken: { __typename?: 'Token', id: number, name: string, description: string, picture: string, price: number, author: { __typename?: 'User', username?: string | null, id?: number | null }, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } } };
+
+export type BuyTokenMutationVariables = Exact<{
+  input: BuyTokenInput;
+}>;
+
+
+export type BuyTokenMutation = { __typename?: 'Mutation', buyToken: { __typename?: 'Token', id: number, name: string, description: string, picture: string, price: number, type: { __typename?: 'TokenType', name: string, picture: string, id: string }, owner: { __typename?: 'User', username?: string | null, id?: number | null } } };
 
 export type BaseUserFieldsFragment = { __typename?: 'User', id?: number | null, username?: string | null, picture?: string | null, boughtTokensCount: number, createdTokensCount: number } & { ' $fragmentName'?: 'BaseUserFieldsFragment' };
 
@@ -498,5 +506,6 @@ export const GetAllTokensDocument = {"kind":"Document","definitions":[{"kind":"O
 export const GetRandomTokensDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getRandomTokens"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetRandomTokensInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getRandomTokens"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getRandomTokensInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"type"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<GetRandomTokensQuery, GetRandomTokensQueryVariables>;
 export const GetUserTokensDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserTokens"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getAuthorTokensInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetAuthorTokensInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"params"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginateParams"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUserTokens"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getAuthorTokensInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getAuthorTokensInput"}}},{"kind":"Argument","name":{"kind":"Name","value":"params"},"value":{"kind":"Variable","name":{"kind":"Name","value":"params"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"type"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"owner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"total"}}]}}]}}]} as unknown as DocumentNode<GetUserTokensQuery, GetUserTokensQueryVariables>;
 export const GetTokenDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getToken"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getToken"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"type"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"owner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<GetTokenQuery, GetTokenQueryVariables>;
+export const BuyTokenDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"buyToken"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"BuyTokenInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"buyToken"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"buyTokenInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"type"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"picture"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"owner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<BuyTokenMutation, BuyTokenMutationVariables>;
 export const GetAllUsersDocument = {"kind":"Document", "definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAllUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"params"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"PaginateParams"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAllUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"params"},"value":{"kind":"Variable","name":{"kind":"Name","value":"params"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseUserFields"}}]}},{"kind":"Field","name":{"kind":"Name","value":"total"}}]}}]}},...BaseUserFieldsFragmentDoc.definitions]} as unknown as DocumentNode<GetAllUsersQuery, GetAllUsersQueryVariables>;
 export const GetUserByUsernameDocument = {"kind":"Document", "definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getUserByUsername"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getUserByUsername"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserInfo"}}]}}]}},...UserInfoFragmentDoc.definitions]} as unknown as DocumentNode<GetUserByUsernameQuery, GetUserByUsernameQueryVariables>;

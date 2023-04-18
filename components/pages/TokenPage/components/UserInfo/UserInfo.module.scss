@@ -1,0 +1,26 @@
+@import "styles/variables.module";
+
+.authorWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+
+.authorAvatar {
+  width: 32px;
+  height: 32px;
+  padding-top: 0;
+  margin-right: 15px;
+}
+
+.authorName {
+  font-family: $workSans;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 140%;
+}
