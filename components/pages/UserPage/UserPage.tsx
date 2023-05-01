@@ -5,6 +5,7 @@ import { UserLinks } from '@components/pages/UserPage/components/UserLinks/UserL
 import { Avatar } from '@components/shared/Avatar/Avatar';
 import { Heading } from '@components/shared/Heading/Heading';
 import { Label } from '@components/shared/Label/Label';
+import { Loader } from '@components/shared/Loader/Loader';
 import { Tab, Tabs } from '@components/shared/Tabs/Tabs';
 import { TokenCard } from '@components/shared/TokenCard/TokenCard';
 import { GET_USER_TOKENS } from '@graphql/queries/tokens';
@@ -70,61 +71,73 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
   ];
 
   if (!user) {
-    return <div>Loading</div>;
+    return <Loader />;
   }
 
   return (
     <>
       <UserCover user={user} editable={isMe} />
       <ContentWrapper wrapperClassName={s.infoSection}>
-        <div className={s.info}>
-          <div className={s.avatarWrapper}>
-            <Avatar user={user} className={s.avatar} editable={isMe} />
-          </div>
-          <Heading level={1}>{username}</Heading>
-          <div className={clsx(s.infoRow, s.statsRow)}>
-            <div className={s.tokensInfo}>
-              <span className={s.tokensCount}>{user.createdTokensCount}</span>
-              <span className={s.tokensText}>Tokens created</span>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className={s.info}>
+              <div className={s.avatarWrapper}>
+                <Avatar user={user} className={s.avatar} editable={isMe} />
+              </div>
+              <Heading level={1}>{username}</Heading>
+              <div className={clsx(s.infoRow, s.statsRow)}>
+                <div className={s.tokensInfo}>
+                  <span className={s.tokensCount}>
+                    {user.createdTokensCount}
+                  </span>
+                  <span className={s.tokensText}>Tokens created</span>
+                </div>
+                <div className={s.tokensInfo}>
+                  <span className={s.tokensCount}>
+                    {user.boughtTokensCount}
+                  </span>
+                  <span className={s.tokensText}>Tokens bought</span>
+                </div>
+              </div>
+              <div className={s.infoRow}>
+                <UserBio user={user} editable={isMe} />
+              </div>
+              <div className={s.infoRow}>
+                <Label>Links</Label>
+                <UserLinks user={user} editable={isMe} />
+              </div>
             </div>
-            <div className={s.tokensInfo}>
-              <span className={s.tokensCount}>{user.boughtTokensCount}</span>
-              <span className={s.tokensText}>Tokens bought</span>
-            </div>
-          </div>
-          <div className={s.infoRow}>
-            <UserBio user={user} editable={isMe} />
-          </div>
-          <div className={s.infoRow}>
-            <Label>Links</Label>
-            <UserLinks user={user} editable={isMe} />
-          </div>
-        </div>
-        <Tabs
-          tabs={tabs}
-          selectedTab={selectedTab}
-          setSelectedTab={setSelectedTab}
-        />
+            <Tabs
+              tabs={tabs}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+          </>
+        )}
       </ContentWrapper>
       <ContentWrapper
         className={s.tokensSection}
         wrapperClassName={s.tokensWrapper}
       >
-        <div className={s.tokens}>
-          {noTokens && (
-            <p className={s.emptyText}>There are no tokens yet...</p>
-          )}
-          {userTokens?.data.map((token) => {
-            return (
-              <TokenCard
-                card={token}
-                key={token.id}
-                className={s.token}
-                darken={true}
-              />
-            );
-          })}
-        </div>
+        {userTokensLoading ? (
+          <Loader />
+        ) : (
+          <div className={s.tokens}>
+            {noTokens && <p>There are no tokens yet...</p>}
+            {userTokens?.data.map((token) => {
+              return (
+                <TokenCard
+                  card={token}
+                  key={token.id}
+                  className={s.token}
+                  darken={true}
+                />
+              );
+            })}
+          </div>
+        )}
       </ContentWrapper>
     </>
   );

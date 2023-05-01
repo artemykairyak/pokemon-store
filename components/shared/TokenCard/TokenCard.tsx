@@ -18,6 +18,7 @@ export const TokenCard: FC<PokemonCardProps> = ({
   darken = false,
   className,
 }) => {
+  const isSold = !!owner?.id;
   const userClassNames = {
     wrapper: s.ownerWrapper,
     label: s.ownerLabel,
@@ -28,7 +29,11 @@ export const TokenCard: FC<PokemonCardProps> = ({
   return (
     <Link
       href={`/token/${id}`}
-      className={clsx(s.card, { [s.darken]: darken }, className)}
+      className={clsx(
+        s.card,
+        { [s.darken]: darken, [s.sold]: isSold },
+        className,
+      )}
       style={{ backgroundImage: `url(${picture})` }}
     >
       <div className={s.info}>
@@ -36,7 +41,7 @@ export const TokenCard: FC<PokemonCardProps> = ({
           <div className={s.infoTable}>
             <span className={s.title}>{name}</span>
             <div className={s.author}>
-              <UserInfo user={owner} classNames={userClassNames} />
+              <UserInfo user={author} classNames={userClassNames} />
             </div>
           </div>
           <img
@@ -50,7 +55,7 @@ export const TokenCard: FC<PokemonCardProps> = ({
             <span className={s.priceLabel}>Price</span>
             <span className={s.priceValue}>${price}</span>
           </div>
-          {!!owner?.id && (
+          {isSold && (
             <div className={s.owner}>
               <UserInfo
                 user={owner}

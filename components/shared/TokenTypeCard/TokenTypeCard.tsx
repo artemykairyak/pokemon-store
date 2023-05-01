@@ -18,9 +18,8 @@ export const TokenTypeCard: FC<TokenTypeCardProps> = ({
   darken,
 }) => {
   return (
-    //todo: link
     <Link
-      href="/store"
+      href={`/shop?type=${tokenType.name}`}
       className={clsx(s.tokenType, { [s.darken]: darken }, className)}
     >
       <div className={s.info}>

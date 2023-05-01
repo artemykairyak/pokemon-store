@@ -11,11 +11,11 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 import s from './AuthPage.module.scss';
 
-
 export const AuthPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const { signUp, loading, errors, login } = useAuth();
   const router = useRouter();
+  const { backLink } = router.query as { backLink?: string };
 
   const inputs = isSignUp ? signUpInputs : signInInputs;
   const validationSchema = isSignUp ? signUpSchema : signInSchema;
@@ -29,7 +29,12 @@ export const AuthPage = () => {
     }
 
     if (await login(username, password)) {
-      await router.push(`/user/${username}`);
+      if (backLink) {
+        await router.replace(backLink);
+        return;
+      }
+
+      await router.replace(`/user/${username}`);
     }
   };
 

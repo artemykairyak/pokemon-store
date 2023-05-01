@@ -23,7 +23,7 @@ const Token: FC<{ tokenId: number }> = ({ tokenId }) => {
 
   return (
     <PageLayout pageHeadData={{ title: `${token?.name}` }}>
-      {token && <TokenPage token={token} />}
+      {token && <TokenPage token={token} loading={loading} />}
     </PageLayout>
   );
 };

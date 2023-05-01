@@ -16,11 +16,26 @@
   animation: slideBackground 20s linear infinite;
 }
 
+.sold {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background-color: $error;
+  padding: 8px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 7px;
+}
+
 .titleWrapper {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
   align-items: center;
+  position: relative;
 }
 
 .typeWrapper {
@@ -43,6 +58,10 @@
 
 .info {
   width: 70%;
+}
+
+.desc {
+  margin-top: 30px;
 }
 
 .descText {
