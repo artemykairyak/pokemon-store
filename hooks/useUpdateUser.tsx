@@ -3,8 +3,7 @@ import { UPDATE_USER } from '@graphql/mutations/users';
 import { GET_USER_BY_USERNAME } from '@graphql/queries/users';
 import { UpdateUserInput, User } from '@graphqlTypes/graphql';
 
-
-export const useUpdateUser = (user?: User) => {
+export const useUpdateUser = (user?: User | null) => {
   const [updateUser] = useMutation<
     { updateUser: User },
     { input: UpdateUserInput }
@@ -16,6 +15,8 @@ export const useUpdateUser = (user?: User) => {
       },
     ],
   });
+
+  console.log(user);
 
   return { updateUser };
 };

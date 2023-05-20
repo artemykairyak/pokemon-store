@@ -7,9 +7,9 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-
 const Token: FC<{ tokenId: number }> = ({ tokenId }) => {
   const router = useRouter();
+
   const [token, errors, loading] = useAppQuery<QueryGetTokenArgs, TokenType>(
     GET_TOKEN,
     {

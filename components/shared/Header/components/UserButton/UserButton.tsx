@@ -10,7 +10,6 @@ interface UserButtonProps {
 }
 
 export const UserButton: FC<UserButtonProps> = ({ user }) => {
-  console.log(user);
   return (
     <Link href={`/user/${user.username}`}>
       <div className={s.userBtn}>

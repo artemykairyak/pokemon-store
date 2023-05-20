@@ -1,15 +1,18 @@
 import { UserComponentProps } from '@components/pages/UserPage/types';
 import { Label } from '@components/shared/Label/Label';
 import { useUpdateUser } from '@hooks/useUpdateUser';
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import s from './UserBio.module.scss';
 
-
 export const UserBio: FC<UserComponentProps> = ({ user, editable }) => {
-  const [bio, setBio] = useState<string>(user.bio || 'Here is empty...');
+  const [bio, setBio] = useState('');
   const [error, setError] = useState('');
   const { updateUser } = useUpdateUser(user);
+
+  useEffect(() => {
+    setBio(user.bio || 'Here is empty...');
+  }, [user]);
 
   const onChangeBio = (e: ChangeEvent<HTMLInputElement>) => {
     setBio(e.target.value);

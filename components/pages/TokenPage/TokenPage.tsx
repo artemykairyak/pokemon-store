@@ -21,6 +21,7 @@ export interface TokenPageProps {
 
 export const TokenPage: FC<TokenPageProps> = ({ token, loading }) => {
   const router = useRouter();
+
   const description = token.description.replaceAll('\\n', '<br>');
 
   const { isMineToken, isBoughtToken, randomTokens, onBuyToken, isFireworks } =

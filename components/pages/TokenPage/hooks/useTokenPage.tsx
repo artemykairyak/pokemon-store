@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useFireworks } from '@components/pages/TokenPage/hooks/useFireworks';
 import { AuthContext } from '@context/AuthContext';
 import { BUY_TOKEN, GET_RANDOM_TOKENS } from '@graphql/queries/tokens';
+import { GET_USER_BY_USERNAME } from '@graphql/queries/users';
 import {
   BuyTokenMutationVariables,
   GetRandomTokensQueryVariables,
@@ -43,6 +44,12 @@ export const useTokenPage = (token: Token) => {
 
     const { data } = await buyToken({
       variables: { input: { id: token.id, price: token.price } },
+      refetchQueries: [
+        {
+          query: GET_USER_BY_USERNAME,
+          variables: { username: user?.username },
+        },
+      ],
     });
 
     if (data) {
