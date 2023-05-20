@@ -12,7 +12,6 @@ import { ReactSVG } from 'react-svg';
 
 import s from './Avatar.module.scss';
 
-
 interface AvatarProps extends UserComponentProps {
   className?: string;
 }

@@ -5,6 +5,7 @@ import {
 } from '@components/pages/AuthPage/constants';
 import { useAuth } from '@components/pages/AuthPage/hooks/useAuth';
 import { signInSchema, signUpSchema } from '@components/pages/AuthPage/yup';
+import { Popup } from '@components/shared/Popup/Popup';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
@@ -15,6 +16,7 @@ export const AuthPage = () => {
   const router = useRouter();
   const { backLink } = router.query as { backLink?: string };
   const [isSignUp, setIsSignUp] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
   const { signUp, loading, errors, login, setErrors, user } = useAuth();
 
   const inputs = isSignUp ? signUpInputs : signInInputs;
@@ -30,7 +32,17 @@ export const AuthPage = () => {
     const { username, email, password } = data;
 
     if (isSignUp) {
-      await signUp(username, email, password);
+      const signedUp = await signUp(username, email, password);
+
+      if (signedUp) {
+        setIsSignUp(false);
+        setSignedUp(true);
+
+        setTimeout(() => {
+          setSignedUp(false);
+        }, 3000);
+      }
+
       return;
     }
 
@@ -73,6 +85,13 @@ export const AuthPage = () => {
           </button>
         </div>
       </div>
+      {signedUp && (
+        <Popup
+          type="success"
+          title="You have succesfully registred!"
+          text={`It's time to log in!`}
+        />
+      )}
     </div>
   );
 };
