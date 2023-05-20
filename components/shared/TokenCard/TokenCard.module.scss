@@ -9,6 +9,7 @@
   background-size: cover;
   background-position: -1px -1px;
   background-repeat: no-repeat;
+  transition: all .3s;
 
   &.sold:after {
     content: 'Sold';
@@ -23,6 +24,10 @@
     align-items: center;
     justify-content: center;
     transform: rotate(45deg);
+  }
+
+  &:hover {
+    background-position: -1px -15px;
   }
 }
 

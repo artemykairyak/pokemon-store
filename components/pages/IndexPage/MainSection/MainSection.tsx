@@ -12,9 +12,9 @@ import {
 } from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
 import { getStatsArray } from '@utils/utils';
+import Link from 'next/link';
 
 import s from './MainSection.module.scss';
-
 
 export const MainSection = () => {
   const [stats] = useAppQuery<{}, Stats[]>(GET_STATS);
@@ -31,12 +31,15 @@ export const MainSection = () => {
             Discover Digital Art & Collect NFTs
           </Heading>
           <p className={s.desc}>
-            NFT marketplace UI created with Anima for Figma. Collect, buy and
-            sell art from more than 20k NFT artists.
+            Discover and collect unique NFT Pokemon in our marketplace, where
+            you can trade, showcase, and embark on digital adventures with these
+            one-of-a-kind virtual creatures.
           </p>
-          <Button type="primary" icon={RocketIcon} className={s.button}>
-            Get Started
-          </Button>
+          <Link href={'/shop'}>
+            <Button type="primary" icon={RocketIcon} className={s.button}>
+              Get Started
+            </Button>
+          </Link>
           <div className={s.stats}>
             {stats &&
               getStatsArray(stats)?.map((item, i) => {

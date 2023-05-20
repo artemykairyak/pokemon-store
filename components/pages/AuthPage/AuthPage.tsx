@@ -6,19 +6,25 @@ import {
 import { useAuth } from '@components/pages/AuthPage/hooks/useAuth';
 import { signInSchema, signUpSchema } from '@components/pages/AuthPage/yup';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 import s from './AuthPage.module.scss';
 
 export const AuthPage = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
-  const { signUp, loading, errors, login } = useAuth();
   const router = useRouter();
   const { backLink } = router.query as { backLink?: string };
+  const [isSignUp, setIsSignUp] = useState(false);
+  const { signUp, loading, errors, login, setErrors, user } = useAuth();
 
   const inputs = isSignUp ? signUpInputs : signInInputs;
   const validationSchema = isSignUp ? signUpSchema : signInSchema;
+
+  useEffect(() => {
+    if (user) {
+      router.replace(`/user/${user.username}`);
+    }
+  }, [user]);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const { username, email, password } = data;
@@ -36,6 +42,11 @@ export const AuthPage = () => {
 
       await router.replace(`/user/${username}`);
     }
+  };
+
+  const switchMode = () => {
+    setIsSignUp((prev) => !prev);
+    setErrors('');
   };
 
   return (
@@ -57,11 +68,8 @@ export const AuthPage = () => {
         />
         <div className={s.toggle}>
           <span className={s.toggleText}>or</span>
-          <button
-            className={s.toggleButton}
-            onClick={() => setIsSignUp((prev) => !prev)}
-          >
-            {isSignUp ? 'Sign In' : 'Sign Up'}
+          <button className={s.toggleButton} onClick={switchMode}>
+            {isSignUp ? 'Log In' : 'Create account'}
           </button>
         </div>
       </div>

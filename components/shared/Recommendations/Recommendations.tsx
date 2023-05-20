@@ -5,7 +5,6 @@ import { FC, ReactNode } from 'react';
 
 import s from './Recommendations.module.scss';
 
-
 interface RecommendationsProps {
   title: string;
   tokens?: Token[];
@@ -26,7 +25,7 @@ export const Recommendations: FC<RecommendationsProps> = ({
       </HeadingGroup>
       <div className={s.recsTable}>
         {tokens?.map((item) => {
-          return <TokenCard card={item} className={s.token} />;
+          return <TokenCard card={item} className={s.token} key={item.id} />;
         })}
       </div>
     </div>

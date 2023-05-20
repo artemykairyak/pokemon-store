@@ -6,11 +6,10 @@ import { LoginResponse, LoginUserInput } from '@graphqlTypes/graphql';
 import { getGraphQLErrors } from '@utils/utils';
 import { useContext, useEffect, useState } from 'react';
 
-
 export const useAuth = () => {
   const [errors, setErrors] = useState('');
   const [loading, setLoading] = useState(false);
-  const { setUser } = useContext(AuthContext);
+  const { setUser, user } = useContext(AuthContext);
   const [loginMutation, { loading: loginLoading, error: loginError }] =
     useMutation<{ login: LoginResponse }, { input: LoginUserInput }>(LOGIN);
   const [signUpMutation, { loading: signUpLoading, error: signUpError }] =
@@ -56,5 +55,10 @@ export const useAuth = () => {
     }
   };
 
-  return { errors, loading, login, signUp };
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem(LS_ACCESS_TOKEN);
+  };
+
+  return { errors, setErrors, loading, login, signUp, logout, user };
 };

@@ -9,7 +9,6 @@ import { ObjectSchema } from 'yup';
 
 import s from '../../AuthPage.module.scss';
 
-
 interface SignUpFormProps {
   inputs: IInput[];
   onSubmit: SubmitHandler<FieldValues>;
@@ -75,7 +74,7 @@ export const AuthForm: FC<SignUpFormProps> = ({
         loading={!!loading}
         disabled={loading}
       >
-        {isSignUp ? 'Create account' : 'Sign In'}
+        {isSignUp ? 'Create account' : 'Log In'}
       </Button>
       <span className={s.authError}>{authErrors}</span>
     </form>

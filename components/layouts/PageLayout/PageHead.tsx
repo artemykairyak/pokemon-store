@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-
 export interface PageHeadData {
   title: string;
   description?: string;
@@ -67,11 +66,7 @@ export const PageHead: FC<PageHeadData> = (props) => {
       />
 
       <link rel="canonical" href={canonicalUrl} />
-      <link
-        rel="shortcut icon"
-        type="image/x-icon"
-        href="/static/images/favicon/favicon.ico"
-      />
+      <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     </Head>
   );
 };

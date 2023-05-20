@@ -12,34 +12,29 @@ import InstagramIcon from 'assets/icons/InstagramLogo.svg';
 import TwitterIcon from 'assets/icons/TwitterLogo.svg';
 import YouTubeIcon from 'assets/icons/YoutubeLogo.svg';
 
-
 const socials = [
   {
-    link: 'discord',
+    link: 'https://discord.com',
     icon: DiscordIcon,
   },
   {
-    link: 'youtube',
+    link: 'https://youtube.com',
     icon: YouTubeIcon,
   },
   {
-    link: 'twitter',
+    link: 'https://twitter.com',
     icon: TwitterIcon,
   },
   {
-    link: 'instagram',
+    link: 'https://instagram.com',
     icon: InstagramIcon,
   },
 ];
 
 const links = [
   {
-    text: 'Marketplace',
-    link: '/marketplace',
-  },
-  {
-    text: 'Statistics',
-    link: '/stats',
+    text: 'Shop',
+    link: '/shop',
   },
 ];
 
@@ -51,7 +46,7 @@ export const Footer = () => {
           <div className={clsx(s.column, s.mainColumn)}>
             <Logo className={s.columnTitle} />
             <p className={s.commonText}>
-              Pokemon Store UI created with Anima for Figma.
+              Collect, trade, and explore NFT Pokemons.
             </p>
             <p className={s.communityText}>Join our community</p>
             <div className={s.socials}>

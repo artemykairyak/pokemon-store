@@ -1,4 +1,5 @@
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
+import { useAuth } from '@components/pages/AuthPage/hooks/useAuth';
 import { UserBio } from '@components/pages/UserPage/components/UserBio/UserBio';
 import { UserCover } from '@components/pages/UserPage/components/UserCover/UserCover';
 import { UserLinks } from '@components/pages/UserPage/components/UserLinks/UserLinks';
@@ -6,6 +7,7 @@ import { Avatar } from '@components/shared/Avatar/Avatar';
 import { Heading } from '@components/shared/Heading/Heading';
 import { Label } from '@components/shared/Label/Label';
 import { Loader } from '@components/shared/Loader/Loader';
+import { Button } from '@components/shared/PrimaryButton/Button';
 import { Tab, Tabs } from '@components/shared/Tabs/Tabs';
 import { TokenCard } from '@components/shared/TokenCard/TokenCard';
 import { GET_USER_TOKENS } from '@graphql/queries/tokens';
@@ -21,10 +23,7 @@ import { useUser } from '@hooks/useUser';
 import clsx from 'clsx';
 import { FC, useState } from 'react';
 
-
-
 import s from './UserPage.module.scss';
-
 
 export interface UserPageProps {
   username: string;
@@ -51,10 +50,11 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
       username,
       owned: selectedTab === UserTab.OWNED,
     },
-    params: {},
+    params: { limit: 100 },
   });
 
   const { isMe } = useUser(user);
+  const { logout } = useAuth();
   const noTokens = !userTokens?.data.length && !userTokensLoading;
 
   const tabs: Tab[] = [
@@ -108,6 +108,15 @@ export const UserPage: FC<UserPageProps> = ({ username }) => {
                 <Label>Links</Label>
                 <UserLinks user={user} editable={isMe} />
               </div>
+              {isMe && (
+                <Button
+                  type="secondary"
+                  onClick={logout}
+                  className={s.logoutBtn}
+                >
+                  Logout
+                </Button>
+              )}
             </div>
             <Tabs
               tabs={tabs}

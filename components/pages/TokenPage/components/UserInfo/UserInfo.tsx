@@ -7,7 +7,6 @@ import { FC } from 'react';
 
 import s from './UserInfo.module.scss';
 
-
 interface UserInfoProps {
   user: User;
   label?: string;
