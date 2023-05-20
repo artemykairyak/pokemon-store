@@ -8,3 +8,9 @@
   width: 23.24%;
   margin-bottom: 2.3%;
 }
+
+@media (max-width: 768px) {
+  .card {
+    width: 48.8%;
+  }
+}

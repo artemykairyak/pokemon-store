@@ -6,3 +6,19 @@
   padding-left: 6%;
   padding-right: 6%;
 }
+
+@media (max-width: 1024px) {
+  .wrapper {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}

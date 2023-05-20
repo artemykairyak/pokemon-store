@@ -11,3 +11,9 @@
   font-size: 22px;
   line-height: 160%;
 }
+
+@media (max-width: 1024px) {
+  .subtitle {
+    font-size: 20px;
+  }
+}

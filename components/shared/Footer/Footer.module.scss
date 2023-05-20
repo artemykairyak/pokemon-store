@@ -63,7 +63,7 @@
 
 .link {
   transition: color .2s;
-  
+
   &:hover {
     color: $accent;
   }
@@ -80,3 +80,35 @@
   font-size: 16px;
 }
 
+@media (max-width: 1024px) {
+  .footer {
+    padding: 30px 0;
+  }
+
+  .columnTitle {
+    font-size: 20px;
+  }
+
+  .column:first-child {
+    width: 30%;
+  }
+
+  .commonText {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 15px 0;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .column, .column:first-child {
+    width: 100%;
+  }
+}

@@ -36,3 +36,20 @@
   font-size: 22px;
   line-height: 140%;
 }
+
+@media (max-width: 1024px) {
+  .footer {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .picture {
+    width: 45%;
+  }
+
+  .footer {
+    padding-top: 5px;
+    font-size: 16px;
+  }
+}

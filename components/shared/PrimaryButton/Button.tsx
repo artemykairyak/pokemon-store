@@ -2,8 +2,7 @@ import clsx from 'clsx';
 import { ReactNode, forwardRef } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import s from './PrimaryButton.module.scss';
-
+import s from './Button.module.scss';
 
 interface PrimaryButtonProps {
   children: ReactNode | string;

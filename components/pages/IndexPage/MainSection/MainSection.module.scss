@@ -54,3 +54,39 @@
 .card {
   width: 100%;
 }
+
+@media (max-width: 1024px) {
+  .info {
+    width: 50%;
+  }
+
+  .desc {
+    font-size: 20px;
+  }
+
+  .statsValue {
+    font-size: 24px;
+  }
+
+  .statsTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .desc {
+    font-size: 18px;
+  }
+
+  .pic {
+    width: 240px;
+  }
+
+  .statsValue {
+    font-size: 20px;
+  }
+
+  .statsTitle {
+    font-size: 18px;
+  }
+}
