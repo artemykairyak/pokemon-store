@@ -12,10 +12,14 @@ import { useEffect } from 'react';
 export const MoreTokensSection = () => {
   const router = useRouter();
   const { tablet, mobile } = useMedia();
-  const { data: randomTokens, refetch } = useQuery<
-    { getRandomTokens: Token[] },
-    GetRandomTokensQueryVariables
-  >(GET_RANDOM_TOKENS, { variables: { input: { count: 3 } } });
+  const {
+    data: randomTokens,
+    refetch,
+    loading,
+  } = useQuery<{ getRandomTokens: Token[] }, GetRandomTokensQueryVariables>(
+    GET_RANDOM_TOKENS,
+    { variables: { input: { count: 3 } } },
+  );
 
   useEffect(() => {
     if (mobile) {
@@ -43,6 +47,7 @@ export const MoreTokensSection = () => {
             See all
           </Button>
         }
+        loading={loading}
       />
     </ContentWrapper>
   );

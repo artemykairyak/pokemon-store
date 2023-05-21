@@ -1,5 +1,6 @@
 import { PageLayout } from '@components/layouts/PageLayout/PageLayout';
 import { TokenPage } from '@components/pages/TokenPage/TokenPage';
+import { Loader } from '@components/shared/Loader/Loader';
 import { GET_TOKEN } from '@graphql/queries/tokens';
 import { QueryGetTokenArgs, Token as TokenType } from '@graphqlTypes/graphql';
 import { useAppQuery } from '@hooks/useAppQuery';
@@ -23,7 +24,7 @@ const Token: FC<{ tokenId: number }> = ({ tokenId }) => {
 
   return (
     <PageLayout pageHeadData={{ title: `${token?.name}` }}>
-      {token && <TokenPage token={token} loading={loading} />}
+      {token ? <TokenPage token={token} /> : <Loader />}
     </PageLayout>
   );
 };

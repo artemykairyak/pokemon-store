@@ -19,18 +19,22 @@ export const useTokenPage = (token: Token) => {
   const { isFireworks, setIsFireworks } = useFireworks();
   const isMineToken = token.author.id === user?.id;
   const isBoughtToken = !!token.owner.id;
-  const { data: randomTokens, refetch } = useQuery<
-    { getRandomTokens: Token[] },
-    GetRandomTokensQueryVariables
-  >(GET_RANDOM_TOKENS, {
-    variables: {
-      input: {
-        count: 3,
-        username: token.author.username,
-        excludedId: token.id,
+  const {
+    data: randomTokens,
+    refetch,
+    loading,
+  } = useQuery<{ getRandomTokens: Token[] }, GetRandomTokensQueryVariables>(
+    GET_RANDOM_TOKENS,
+    {
+      variables: {
+        input: {
+          count: 3,
+          username: token.author.username,
+          excludedId: token.id,
+        },
       },
     },
-  });
+  );
   const [buyToken] = useMutation<Token, BuyTokenMutationVariables>(BUY_TOKEN);
 
   useEffect(() => {
@@ -66,5 +70,12 @@ export const useTokenPage = (token: Token) => {
     }
   };
 
-  return { isMineToken, isBoughtToken, randomTokens, onBuyToken, isFireworks };
+  return {
+    isMineToken,
+    isBoughtToken,
+    randomTokens,
+    onBuyToken,
+    isFireworks,
+    loading,
+  };
 };

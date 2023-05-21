@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import EyeIcon from '@assets/icons/Eye.svg';
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
 import { HeadingGroup } from '@components/shared/HeadingGroup/HeadingGroup';
+import { Loader } from '@components/shared/Loader/Loader';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { TokenTypeCard } from '@components/shared/TokenTypeCard/TokenTypeCard';
 import { GET_TOKEN_TYPES } from '@graphql/queries/tokenTypes';
@@ -18,14 +19,18 @@ import s from './TokenTypesSection.module.scss';
 export const TokenTypesSection = () => {
   const router = useRouter();
   const { smallTablet, mobile } = useMedia();
-  const { data: tokenTypes, refetch } = useQuery<
-    GetTokenTypesQuery,
-    GetTokenTypesQueryVariables
-  >(GET_TOKEN_TYPES, {
-    variables: {
-      params: { limit: 10 },
+  const {
+    data: tokenTypes,
+    refetch,
+    loading,
+  } = useQuery<GetTokenTypesQuery, GetTokenTypesQueryVariables>(
+    GET_TOKEN_TYPES,
+    {
+      variables: {
+        params: { limit: 10 },
+      },
     },
-  });
+  );
 
   useEffect(() => {
     if (mobile) {
@@ -49,12 +54,22 @@ export const TokenTypesSection = () => {
           See all
         </Button>
       </HeadingGroup>
-      <div className={s.tokenTypes}>
-        {!!tokenTypes?.getTokenTypes.data?.length &&
-          tokenTypes.getTokenTypes.data.map((item) => {
-            return <TokenTypeCard tokenType={item} className={s.tokenType} />;
-          })}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className={s.tokenTypes}>
+          {!!tokenTypes?.getTokenTypes.data?.length &&
+            tokenTypes.getTokenTypes.data.map((item) => {
+              return (
+                <TokenTypeCard
+                  tokenType={item}
+                  className={s.tokenType}
+                  key={item.id}
+                />
+              );
+            })}
+        </div>
+      )}
     </ContentWrapper>
   );
 };
