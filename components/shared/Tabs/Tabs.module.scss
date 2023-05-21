@@ -36,3 +36,26 @@
   padding: 0 10px;
   line-height: 1;
 }
+
+@media (max-width: 555px) {
+  .tab {
+    font-size: 20px;
+  }
+
+  .count {
+    height: 28px;
+  }
+}
+
+
+@media (max-width: 375px) {
+  .tab {
+    font-size: 18px;
+  }
+
+  .count {
+    border-radius:100%;
+    font-size: 14px;
+  }
+}
+

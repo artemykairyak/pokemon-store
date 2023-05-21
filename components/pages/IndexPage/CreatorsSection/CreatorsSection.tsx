@@ -1,17 +1,26 @@
+import { useQuery } from '@apollo/client';
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
 import { UserCard } from '@components/pages/IndexPage/CreatorsSection/components/UserCard/UserCard';
 import { HeadingGroup } from '@components/shared/HeadingGroup/HeadingGroup';
 import { GET_SHORT_AUTHORS } from '@graphql/queries/users';
 import { GetAllUsersQueryVariables, User } from '@graphqlTypes/graphql';
-import { useAppQuery } from '@hooks/useAppQuery';
+import { useMedia } from '@hooks/useMedia';
+import { useEffect } from 'react';
 
 import s from './CreatorsSection.module.scss';
 
 export const CreatorsSection = () => {
-  const [authors] = useAppQuery<
-    GetAllUsersQueryVariables,
-    { data: User[]; total: number }
-  >(GET_SHORT_AUTHORS, { params: { limit: 12 } });
+  const { mobile } = useMedia();
+  const { data: authors, refetch } = useQuery<
+    { getAllUsers: { data: User[] } },
+    GetAllUsersQueryVariables
+  >(GET_SHORT_AUTHORS, { variables: { params: { limit: 12 } } });
+
+  useEffect(() => {
+    if (mobile) {
+      refetch({ params: { limit: 3 } });
+    }
+  }, [mobile]);
 
   return (
     <ContentWrapper>
@@ -20,8 +29,8 @@ export const CreatorsSection = () => {
         subtitle="Checkout Top Rated Creators on the NFT Marketplace"
       ></HeadingGroup>
       <div className={s.creators}>
-        {authors?.data &&
-          authors.data.map((item, i) => {
+        {authors?.getAllUsers.data &&
+          authors.getAllUsers.data.map((item, i) => {
             return (
               <UserCard
                 user={item}

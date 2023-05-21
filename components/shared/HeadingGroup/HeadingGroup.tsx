@@ -4,7 +4,6 @@ import { FC, ReactNode } from 'react';
 
 import s from './HeadingGroup.module.scss';
 
-
 interface HeadingGroupProps {
   title: string;
   subtitle?: string;
@@ -24,7 +23,7 @@ export const HeadingGroup: FC<HeadingGroupProps> = ({
         <Heading level={2}>{title}</Heading>
         {subtitle && <span className={s.subtitle}>{subtitle}</span>}
       </div>
-      {children}
+      <div className={s.button}>{children}</div>
     </div>
   );
 };

@@ -5,9 +5,8 @@ import { FC } from 'react';
 
 import s from './TokenTypeCard.module.scss';
 
-
 interface TokenTypeCardProps {
-  tokenType: TokenType;
+  tokenType: Partial<TokenType>;
   className?: string;
   darken?: boolean;
 }

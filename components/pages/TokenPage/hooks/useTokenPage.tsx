@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useFireworks } from '@components/pages/TokenPage/hooks/useFireworks';
 import { AuthContext } from '@context/AuthContext';
 import { BUY_TOKEN, GET_RANDOM_TOKENS } from '@graphql/queries/tokens';
@@ -8,27 +8,36 @@ import {
   GetRandomTokensQueryVariables,
   Token,
 } from '@graphqlTypes/graphql';
-import { useAppQuery } from '@hooks/useAppQuery';
+import { useMedia } from '@hooks/useMedia';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 export const useTokenPage = (token: Token) => {
   const router = useRouter();
+  const { smallTablet } = useMedia();
   const { user } = useContext(AuthContext);
   const { isFireworks, setIsFireworks } = useFireworks();
   const isMineToken = token.author.id === user?.id;
   const isBoughtToken = !!token.owner.id;
-  const [randomTokens] = useAppQuery<GetRandomTokensQueryVariables, Token[]>(
-    GET_RANDOM_TOKENS,
-    {
+  const { data: randomTokens, refetch } = useQuery<
+    { getRandomTokens: Token[] },
+    GetRandomTokensQueryVariables
+  >(GET_RANDOM_TOKENS, {
+    variables: {
       input: {
         count: 3,
         username: token.author.username,
         excludedId: token.id,
       },
     },
-  );
+  });
   const [buyToken] = useMutation<Token, BuyTokenMutationVariables>(BUY_TOKEN);
+
+  useEffect(() => {
+    if (smallTablet) {
+      refetch({ input: { count: 2 } });
+    }
+  }, [smallTablet]);
 
   const onBuyToken = async () => {
     if (!user) {

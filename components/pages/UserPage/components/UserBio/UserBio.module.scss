@@ -17,3 +17,9 @@
   color: $error;
   font-size: 12px;
 }
+
+@media (max-width: 555px) {
+  .bio {
+    font-size: 20px;
+  }
+}

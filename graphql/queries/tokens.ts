@@ -39,6 +39,11 @@ export const GET_RANDOM_TOKENS = gql`
         id
         picture
       }
+      owner {
+        username
+        id
+        picture
+      }
       description
       picture
       price

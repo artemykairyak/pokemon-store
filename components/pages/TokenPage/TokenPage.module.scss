@@ -75,6 +75,39 @@
   margin-top: 80px;
 }
 
-.owner {
 
+@media (max-width: 1024px) {
+  .info {
+    width: 80%;
+  }
+}
+
+@media (max-width: 555px) {
+  .descText {
+    font-size: 20px;
+  }
+
+  .titleWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sold {
+    position: static;
+    margin-top: 15px;
+  }
+
+  .cover {
+    height: 250px;
+  }
+}
+
+@media (max-width: 425px) {
+  .descText {
+    font-size: 18px;
+  }
+
+  .info {
+    width: 100%;
+  }
 }

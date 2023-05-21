@@ -5,6 +5,7 @@ import {
 } from '@components/pages/AuthPage/constants';
 import { useAuth } from '@components/pages/AuthPage/hooks/useAuth';
 import { signInSchema, signUpSchema } from '@components/pages/AuthPage/yup';
+import { Heading } from '@components/shared/Heading/Heading';
 import { Popup } from '@components/shared/Popup/Popup';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -65,7 +66,9 @@ export const AuthPage = () => {
     <div className={s.login}>
       <div className={s.img} />
       <div className={s.content}>
-        <h1 className={s.title}>{isSignUp ? 'Create Account' : 'Log In'}</h1>
+        <Heading level={1} className={s.title}>
+          {isSignUp ? 'Create Account' : 'Log In'}
+        </Heading>
         <p className={s.text}>
           Welcome! enter your details and start creating, collecting and selling
           NFTs.

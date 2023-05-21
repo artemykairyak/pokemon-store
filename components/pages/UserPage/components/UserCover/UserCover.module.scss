@@ -58,3 +58,22 @@
 .closeBtn {
   right: -65px;
 }
+
+@media (max-width: 1024px) {
+  .cover {
+    height: 280px;
+  }
+}
+
+@media (max-width: 555px) {
+  .closeBtn {
+    right: 50%;
+    transform: translateX(50%);
+    top: -60px;
+  }
+
+  .closeBtnIcon {
+    width: 25px;
+    height: 25px;
+  }
+}

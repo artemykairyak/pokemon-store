@@ -1,23 +1,42 @@
+import { useQuery } from '@apollo/client';
 import EyeIcon from '@assets/icons/Eye.svg';
 import { ContentWrapper } from '@components/layouts/ContentWrapper/ContentWrapper';
 import { HeadingGroup } from '@components/shared/HeadingGroup/HeadingGroup';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { TokenTypeCard } from '@components/shared/TokenTypeCard/TokenTypeCard';
 import { GET_TOKEN_TYPES } from '@graphql/queries/tokenTypes';
-import { GetTokenTypesQueryVariables, TokenType } from '@graphqlTypes/graphql';
-import { useAppQuery } from '@hooks/useAppQuery';
+import {
+  GetTokenTypesQuery,
+  GetTokenTypesQueryVariables,
+} from '@graphqlTypes/graphql';
+import { useMedia } from '@hooks/useMedia';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import s from './TokenTypesSection.module.scss';
 
 export const TokenTypesSection = () => {
   const router = useRouter();
-  const [tokenTypes] = useAppQuery<
-    GetTokenTypesQueryVariables,
-    { data: TokenType[]; total: number }
+  const { smallTablet, mobile } = useMedia();
+  const { data: tokenTypes, refetch } = useQuery<
+    GetTokenTypesQuery,
+    GetTokenTypesQueryVariables
   >(GET_TOKEN_TYPES, {
-    params: { limit: 10 },
+    variables: {
+      params: { limit: 10 },
+    },
   });
+
+  useEffect(() => {
+    if (mobile) {
+      refetch({ params: { limit: 6 } });
+      return;
+    }
+
+    if (smallTablet) {
+      refetch({ params: { limit: 9 } });
+    }
+  }, [smallTablet, mobile]);
 
   const goToShop = async () => {
     await router.push('/shop');
@@ -31,8 +50,8 @@ export const TokenTypesSection = () => {
         </Button>
       </HeadingGroup>
       <div className={s.tokenTypes}>
-        {!!tokenTypes?.data?.length &&
-          tokenTypes.data.map((item) => {
+        {!!tokenTypes?.getTokenTypes.data?.length &&
+          tokenTypes.getTokenTypes.data.map((item) => {
             return <TokenTypeCard tokenType={item} className={s.tokenType} />;
           })}
       </div>

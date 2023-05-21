@@ -16,7 +16,5 @@ export const useUpdateUser = (user?: User | null) => {
     ],
   });
 
-  console.log(user);
-
   return { updateUser };
 };

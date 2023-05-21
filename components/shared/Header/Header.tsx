@@ -3,12 +3,12 @@ import { UserButton } from '@components/shared/Header/components/UserButton/User
 import { Logo } from '@components/shared/Logo/Logo';
 import { Button } from '@components/shared/PrimaryButton/Button';
 import { AuthContext } from '@context/AuthContext';
+import { useMedia } from '@hooks/useMedia';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 
 import s from './Header.module.scss';
-
 
 const headerLinks = [
   {
@@ -20,6 +20,7 @@ const headerLinks = [
 export const Header = () => {
   const router = useRouter();
   const { user } = useContext(AuthContext);
+  const { smallTablet } = useMedia();
 
   const onLoginBtnClick = async () => {
     await router.push('/auth');
@@ -27,7 +28,7 @@ export const Header = () => {
 
   return (
     <div className={s.header}>
-      <Logo />
+      <Logo compact={smallTablet} />
       <nav className={s.nav}>
         <ul className={s.list}>
           {headerLinks.map((item, i) => {

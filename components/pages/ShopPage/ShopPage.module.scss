@@ -94,3 +94,37 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 768px) {
+  .token {
+    width: 48.7%;
+  }
+
+  .type {
+    width: 20%;
+  }
+}
+
+@media (max-width: 555px) {
+  .type {
+    width: 25%;
+  }
+
+  .subtitle {
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 425px) {
+  .token {
+    width: 100%;
+  }
+
+  .tokens {
+    gap: 15px;
+  }
+
+  .type {
+    width: 50%;
+  }
+}

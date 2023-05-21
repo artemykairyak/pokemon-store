@@ -39,3 +39,13 @@
     padding: 0 30px;
   }
 }
+
+@media (max-width: 425px) {
+  .nav {
+    gap: 15px;
+  }
+
+  .header {
+    padding: 0 15px;
+  }
+}

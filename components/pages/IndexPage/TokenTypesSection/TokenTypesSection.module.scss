@@ -22,5 +22,14 @@
   margin-top: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 555px) {
+  .tokenType {
+    width: 30.8%;
+  }
+}
+
+@media (max-width: 425px) {
+  .tokenType {
+    width: 48.1%;
+  }
 }

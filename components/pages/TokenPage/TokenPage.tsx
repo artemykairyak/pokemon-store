@@ -83,10 +83,10 @@ export const TokenPage: FC<TokenPageProps> = ({ token, loading }) => {
                 ></p>
               </div>
             </div>
-            {!!randomTokens?.length && (
+            {!!randomTokens?.getRandomTokens.length && (
               <div className={s.recs}>
                 <Recommendations
-                  tokens={randomTokens}
+                  tokens={randomTokens.getRandomTokens}
                   title="More from this artist"
                   button={
                     <Button

@@ -9,7 +9,6 @@ import { FieldValues } from 'react-hook-form';
 
 import s from './UserCover.module.scss';
 
-
 interface UserCoverProps {
   user: User;
   editable: boolean;
@@ -60,6 +59,7 @@ export const UserCover: FC<UserCoverProps> = ({ user, editable }) => {
           />
           <CloseButton
             className={s.closeBtn}
+            iconClassName={s.closeBtnIcon}
             onClick={() => setIsUpdatingMode(false)}
           />
         </div>

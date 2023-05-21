@@ -15,7 +15,6 @@ import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 
-
 export const useShopPage = () => {
   const router = useRouter();
   const { type } = router.query as { type?: string };
@@ -50,7 +49,12 @@ export const useShopPage = () => {
     const nextPage = selectedPage + 1;
 
     await fetchMore({
-      variables: { params: { page: nextPage, limit: DEFAULT_LIMIT } },
+      variables: {
+        params: {
+          page: nextPage,
+          limit: DEFAULT_LIMIT,
+        },
+      },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
           return prevResult;
@@ -115,6 +119,10 @@ export const useShopPage = () => {
     [],
   );
 
+  const onChangeSearchTerm = (value: string) => {
+    setSearchTerm(value);
+  };
+
   useEffect(() => {
     if (type) {
       setSelectedTypes(type.split(','));
@@ -127,10 +135,6 @@ export const useShopPage = () => {
   useEffect(() => {
     getSearchData(searchTerm, selectedTypes);
   }, [searchTerm, getSearchData, selectedTypes]);
-
-  const onChangeSearchTerm = (value: string) => {
-    setSearchTerm(value);
-  };
 
   useEffect(() => {
     getTokensByTypes(selectedTypes);

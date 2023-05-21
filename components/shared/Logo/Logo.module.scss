@@ -22,6 +22,12 @@
   font-weight: 700;
 }
 
+.compact {
+  .text {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .text {
     font-size: 22px;

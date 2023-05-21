@@ -29,3 +29,33 @@
     font-size: 28px;
   }
 }
+
+@media (max-width: 555px) {
+  .h1 {
+    font-size: 40px;
+  }
+
+  .h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 425px) {
+  .h1 {
+    font-size: 38px;
+  }
+
+  .h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 375px) {
+  .h1 {
+    font-size: 34px;
+  }
+
+  .h2 {
+    font-size: 20px;
+  }
+}

@@ -78,3 +78,55 @@
     margin-top: 0;
   }
 }
+
+@media (max-width: 1024px) {
+  .tokens {
+    gap: 2.5%;
+  }
+
+  .token {
+    width: 31.65%;
+    margin-top: 2.5% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .token {
+    width: 48.7%;
+  }
+}
+
+@media (max-width: 555px) {
+  .infoSection {
+    padding-top: 64px;
+  }
+
+  .avatarWrapper {
+    width: 100px;
+    height: 100px;
+    top: -21%;
+  }
+
+  .tokensCount {
+    font-size: 24px;
+  }
+
+  .tokensText {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+.statsRow {
+  flex-direction: column;
+  gap: 30px;
+}
+
+  .token {
+    width: 100%;
+  }
+
+  .tokens {
+    gap: 30px;
+  }
+}

@@ -22,3 +22,12 @@
     padding-bottom: 48px;
   }
 }
+
+@media (max-width: 425px) {
+  .wrapper {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

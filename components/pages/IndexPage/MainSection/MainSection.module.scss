@@ -74,6 +74,10 @@
 }
 
 @media (max-width: 768px) {
+  .wrapper {
+    gap: 30px
+  }
+
   .desc {
     font-size: 18px;
   }
@@ -88,5 +92,21 @@
 
   .statsTitle {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 555px) {
+  .pic {
+    display: none;
+  }
+
+  .info {
+    width: 80%;
+  }
+}
+
+@media (max-width: 425px) {
+  .info {
+    width: 90%;
   }
 }

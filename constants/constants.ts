@@ -6,3 +6,4 @@ export const statsKeys = {
 };
 
 export const DEFAULT_LIMIT = 9;
+export const TABLET_LIMIT = 8;

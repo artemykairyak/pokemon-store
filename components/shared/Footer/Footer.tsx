@@ -44,7 +44,7 @@ export const Footer = () => {
       <div className={s.footer}>
         <div className={s.content}>
           <div className={clsx(s.column, s.mainColumn)}>
-            <Logo className={s.columnTitle} />
+            <Logo className={s.columnTitle} compact={false} />
             <p className={s.commonText}>
               Collect, trade, and explore NFT Pokemons.
             </p>

@@ -142,4 +142,43 @@
     width: 35px;
     height: 35px;
   }
+
+  .card.sold:after {
+    top: 0;
+    right: -9%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 555px) {
+  .info {
+    padding: 10px 20px 20px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .type {
+    width: 30px;
+    height: 30px;
+  }
+
+  .ownerUsername {
+    font-size: 14px;
+  }
+
+  .ownerAvatar {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+  }
+
+  .priceValue {
+    font-size: 14px;
+  }
+
+  .footer {
+    margin-top: 15px;
+  }
 }

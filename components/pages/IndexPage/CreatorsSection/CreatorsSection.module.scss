@@ -14,3 +14,14 @@
     width: 48.8%;
   }
 }
+
+@media (max-width: 425px) {
+  .creators {
+    gap: 15px;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
