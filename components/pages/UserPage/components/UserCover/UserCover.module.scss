@@ -39,6 +39,8 @@
 
 .changeCover {
   position: relative;
+  display: flex;
+  justify-content:center;
 }
 
 .changeCoverBtn {
@@ -66,10 +68,18 @@
 }
 
 @media (max-width: 555px) {
+  .changeCover {
+    width: 100%;
+  }
+
+  .input {
+    width: 90%;
+  }
+
   .closeBtn {
     right: 50%;
     transform: translateX(50%);
-    top: -60px;
+    top: -50px;
   }
 
   .closeBtnIcon {

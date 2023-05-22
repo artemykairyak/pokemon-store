@@ -48,11 +48,20 @@
   transition: opacity .3s;
 }
 
-.modal {
-  position: relative;
-  width: 400px;
-}
-
 .closeBtn {
   right: -60px;
+}
+
+@media (max-width: 555px) {
+  .closeBtn {
+    right: 50%;
+    top: -50px;
+    transform: translateX(50%);
+  }
+
+  .closeBtnIcon {
+    width: 25px;
+    height: 25px;
+  }
+
 }

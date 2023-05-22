@@ -2,7 +2,6 @@ import { FC, ReactNode, useEffect } from 'react';
 
 import s from './Modal.module.scss';
 
-
 interface ModalProps {
   children: ReactNode;
   opened: boolean;

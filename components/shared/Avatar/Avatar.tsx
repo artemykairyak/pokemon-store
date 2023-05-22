@@ -48,10 +48,11 @@ export const Avatar: FC<AvatarProps> = ({ user, className, editable }) => {
       </div>
       {isUpdatingMode && (
         <Modal opened={isUpdatingMode}>
-          <div className={s.modal}>
+          <div>
             <CloseButton
               className={s.closeBtn}
               onClick={() => setIsUpdatingMode(false)}
+              iconClassName={s.closeBtnIcon}
             />
             <ButtonInput
               className={s.uploadField}

@@ -114,13 +114,17 @@
   .tokensText {
     font-size: 20px;
   }
+
+  .avatarWrapper {
+    top: -29%;
+  }
 }
 
 @media (max-width: 425px) {
-.statsRow {
-  flex-direction: column;
-  gap: 30px;
-}
+  .statsRow {
+    flex-direction: column;
+    gap: 30px;
+  }
 
   .token {
     width: 100%;
