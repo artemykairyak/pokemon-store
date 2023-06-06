@@ -5,7 +5,7 @@ Frontend app for Pokemon NFT-marketplace.
 Stack:
 
 * NextJS
-* GraphGL
+* GraphQL
 * Apollo
 
 ## Installation
